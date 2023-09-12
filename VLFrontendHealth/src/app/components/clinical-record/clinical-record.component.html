@@ -1,0 +1,291 @@
+<div id="grid">
+	<div class="row">
+		<div class="col">
+			<div class="row main-content">
+				<div class="col">
+					<div class="row">
+						<loading-spinner #spinner name="spinner"></loading-spinner>
+						<div class="col title-section">
+							<app-breadcrumb></app-breadcrumb>
+							<h1>{{ "clinicalRecords" | translate }}</h1>
+						</div>
+						<div class="table-actions d-flex mr-15">
+							<a class="btn-small btn-primary-outline pt-8 ml-15" id="import" (click)="import()">
+								<span class="vismaicon-16 icon-description-blue-upload btn-icon"></span>
+								{{ "import" | translate }}
+							</a>
+						</div>
+					</div>
+					<div class="row mb-30">
+						<div class="col">
+							<alert id="gridClinicalRecords"></alert>
+							<mat-card class="table-content">
+								<div class="chip-wrapper">
+									<span class="caption">{{ "filterBy" | translate }}</span>
+									<div class="chip-content">
+										<mat-chip-list>
+											<mat-chip
+												[id]="'chip_' + filter.name"
+												class="btn-chip mat-chip-border"
+												*ngFor="let filter of filtered"
+												(click)="removeChip(filter.name)"
+												(removed)="removeChip(filter.name)"
+											>
+												{{ filter.text }}
+												<span class="vismaicon-10 icon-special-close-chip" matChipRemove></span>
+											</mat-chip>
+										</mat-chip-list>
+									</div>
+
+									<div class="chip-action" id="chipResetFilter">
+										<span class="mr-15 mt-less-5 chip-result">{{ quantityEmployees }} - {{ "results" | translate }}</span>
+										<a class="link" (click)="clearFilter()" id="resetFilter">{{ "resetFilter" | translate }}</a>
+										<button class="btn-small wrapper-button-circle" (click)="filter = !filter" id="filter">
+											<span class="vismaicon-16 icon-system-filtre"></span>
+										</button>
+									</div>
+								</div>
+
+								<table mat-table [dataSource]="clinicalRecordDataSource" matSort (matSortChange)="sortData($event)">
+									<ng-container matColumnDef="fileNumber">
+										<th class="fileNumber" mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "fileNumber" | translate }}
+										</th>
+										<td mat-cell class="fileNumber" *matCellDef="let clinicalRecord">{{ clinicalRecord.fileNumber }}</td>
+									</ng-container>
+
+									<ng-container matColumnDef="fullName">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "fullName" | translate }}
+										</th>
+										<td mat-cell class="textFit" [title]="clinicalRecord.fullName" *matCellDef="let clinicalRecord">
+											{{ clinicalRecord.fullName }}
+										</td>
+									</ng-container>
+
+									<ng-container matColumnDef="document">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "document" | translate }}
+										</th>
+										<td mat-cell *matCellDef="let clinicalRecord">
+											{{ clinicalRecord.document }}
+										</td>
+									</ng-container>
+
+									<ng-container matColumnDef="StructureTypeDescription_17">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "healthInsurance" | translate }}
+										</th>
+										<td
+											mat-cell
+											class="textFit"
+											[title]="clinicalRecord.additionalAttributes?.StructureTypeDescription_17"
+											*matCellDef="let clinicalRecord"
+										>
+											{{ clinicalRecord.additionalAttributes?.StructureTypeDescription_17 }}
+										</td>
+									</ng-container>
+
+									<ng-container matColumnDef="StructureTypeDescription_23">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "planHealthInsurance" | translate }}
+										</th>
+										<td
+											mat-cell
+											class="textFit"
+											[title]="clinicalRecord.additionalAttributes?.StructureTypeDescription_23"
+											*matCellDef="let clinicalRecord"
+										>
+											{{ clinicalRecord.additionalAttributes?.StructureTypeDescription_23 }}
+										</td>
+									</ng-container>
+
+									<ng-container matColumnDef="StructureTypeDescription_5">
+										<th mat-header-cell *matHeaderCellDef mat-sort-header>
+											{{ "costCenter" | translate }}
+										</th>
+										<td
+											mat-cell
+											class="textFit"
+											[title]="clinicalRecord.additionalAttributes?.StructureTypeDescription_5"
+											*matCellDef="let clinicalRecord"
+										>
+											{{ clinicalRecord.additionalAttributes?.StructureTypeDescription_5 }}
+										</td>
+									</ng-container>
+
+									<ng-container matColumnDef="options">
+										<th mat-header-cell *matHeaderCellDef class="actions">
+											<div *ngIf="quantityEmployees > 0">
+												<button (click)="exportAsXLSX()" id="exportXLS">
+													<span id="export" class="vismaicon-20 icon-system-excel mr-5"></span>
+												</button>
+											</div>
+										</th>
+
+										<td mat-cell *matCellDef="let clinicalRecord">
+											<div>
+												<app-elipsis-grid [element]="clinicalRecord" [actions]="actions"></app-elipsis-grid>
+											</div>
+										</td>
+									</ng-container>
+									<tr mat-header-row *matHeaderRowDef="clinicalRecordDisplayedColumns"></tr>
+									<tr
+										mat-row
+										class="cursor-pointer"
+										(mouseenter)="row.viewOptions = true"
+										(mouseleave)="row.viewOptions = false"
+										*matRowDef="let row; let clinicalRecord; columns: clinicalRecordDisplayedColumns"
+										(dblclick)="viewRecord(clinicalRecord.idPerson)"
+									></tr>
+								</table>
+
+								<app-vertical-feedback
+									type="noDocuments"
+									*ngIf="quantityEmployees === 0"
+									feedbackTitle="noResults"
+								></app-vertical-feedback>
+
+								<div>
+									<mat-paginator
+										#paginator
+										[pageSizeOptions]="[25, 50]"
+										[showFirstLastButtons]="true"
+										[length]="quantityEmployees"
+										(page)="handlePage($event)"
+									></mat-paginator>
+								</div>
+							</mat-card>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Columna de Filtro -->
+		<div class="filter" *ngIf="filter">
+			<!-- Header Filtro -->
+			<div class="header-filtre">
+				<h2>{{ "filter" | translate }}</h2>
+				<span class="vismaicon-20 icon-action-close float-right mt-less-25 pr-10" (click)="filter = !filter"></span>
+			</div>
+			<!-- Filtros -->
+			<form id="formEmployeeFilter" [formGroup]="formEmployeeFilter" novalidate>
+				<fieldset class="filtre-form">
+					<mat-expansion-panel [expanded]="true">
+						<mat-expansion-panel-header>
+							<mat-panel-title id="employeeDataPanel">
+								<p class="label mt-20 ml-15">{{ "employeeData" | translate }}</p>
+							</mat-panel-title>
+						</mat-expansion-panel-header>
+						<mat-form-field class="col-md-12 pt-15">
+							<input
+								id="lastName"
+								#lastName
+								formControlName="lastName"
+								matInput
+								placeholder="{{ 'lastName' | translate }}"
+								autocomplete="no"
+								(keyup.enter)="employeeFilter()"
+							/>
+						</mat-form-field>
+						<mat-form-field class="col-md-12 pt-15">
+							<input
+								id="name"
+								#name
+								formControlName="name"
+								matInput
+								placeholder="{{ 'name' | translate }}"
+								autocomplete="no"
+								(keyup.enter)="employeeFilter()"
+							/>
+						</mat-form-field>
+						<mat-form-field class="col-md-12 pt-15">
+							<input
+								id="documentNumber"
+								#documentNumber
+								formControlName="documentNumber"
+								matInput
+								placeholder="{{ 'document' | translate }}"
+								autocomplete="no"
+								(keyup.enter)="employeeFilter()"
+							/>
+						</mat-form-field>
+						<mat-form-field class="col-md-12 pt-15 pb-15">
+							<input
+								type="number"
+								id="fileNumber"
+								#fileNumber
+								formControlName="fileNumber"
+								matInput
+								placeholder="{{ 'fileNumber' | translate }}"
+								field-validation
+								autocomplete="no"
+								onkeydown="return event.keyCode !== 69"
+								(keyup.enter)="employeeFilter()"
+							/>
+						</mat-form-field>
+						<span class="errorValidationForm" id="fileNumberValidation"></span>
+					</mat-expansion-panel>
+
+					<mat-expansion-panel (click)="getStructureType()">
+						<mat-expansion-panel-header>
+							<mat-panel-title id="organizationPanel">
+								<p class="label mt-20 ml-15">{{ "organization" | translate }}</p>
+							</mat-panel-title>
+						</mat-expansion-panel-header>
+						<ul>
+							<li>
+								<ng-select
+									class="pt-15"
+									bindLabel="description"
+									placeholder="{{ 'structureType' | translate }} *"
+									bindValue="id"
+									formControlName="idStructureType"
+									id="idStructureType"
+									[items]="structureTypes"
+									(change)="changeStructureType($event)"
+									(keyup.enter)="employeeFilter()"
+									appendTo="body"
+								>
+									<ng-template ng-option-tmp let-item="item">
+										<div title="{{ item.description }}">{{ item.description }}</div>
+									</ng-template>
+								</ng-select>
+							</li>
+						</ul>
+						<ng-select
+							class="pt-15"
+							placeholder="{{ 'byAttribute' | translate }}"
+							id="structures"
+							bindLabel="description"
+							[items]="structures"
+							(change)="changeStructure($event)"
+							(keyup.enter)="employeeFilter()"
+							formControlName="idStructure"
+							appendTo="body"
+						>
+							<ng-template ng-option-tmp let-item="item">
+								<div title="{{ item.description }}">{{ item.description }}</div>
+							</ng-template>
+						</ng-select>
+					</mat-expansion-panel>
+					<div class="bottom-sticky single-button">
+						<button
+							id="buttonFilter"
+							type="button"
+							(click)="employeeFilter()"
+							class="btn-small"
+							[ngClass]="{
+								'btn-secondary-fill': formEmployeeFilter.dirty && formEmployeeFilter.valid,
+								'btn-disabled-fill': filterDisabled()
+							}"
+							[disabled]="filterDisabled()"
+						>
+							{{ "apply" | translate }}
+						</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

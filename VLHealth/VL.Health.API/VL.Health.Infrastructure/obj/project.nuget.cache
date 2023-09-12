@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "OoSsvMYXtVKT9NFNZBGuPAbgqNRlBYffyz4XrejKtlTSaEtVKVwy1LvgMRWjhcTMyxDD/NW4TNOTgGO/dBilXA==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Infrastructure\\VL.Health.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "No se encuentra el paquete VL.Libraries.Client. No existe ningún paquete con este id. en los orígenes: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "VL.Libraries.Client",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

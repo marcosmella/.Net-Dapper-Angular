@@ -1,0 +1,56 @@
+.wrapper-file-manager {
+	border: 1px dashed #ddd;
+	border-radius: 10px;
+	background-color: #f8f8f8;
+	text-align: center;
+	display: block;
+	margin: auto 0;
+}
+::ng-deep .ngx-file-drop__drop-zone {
+	border: none !important;
+	border-radius: 10px !important;
+	height: 300px !important;
+	margin: auto;
+	background-color: none !important;
+	padding-top: 30px;
+}
+::ng-deep .ngx-file-drop__content {
+	align-items: center;
+	color: #919191 !important;
+	display: flex;
+	height: 100px;
+	justify-content: center;
+}
+.wrapper-list-file-manager {
+	padding: 15px 20px;
+	text-align: center;
+	border: 1px solid #ddd;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 15px 0;
+	border-radius: 10px;
+}
+
+.file-name-upload {
+	color: #282828;
+	font-size: 12px;
+	margin-left: 20px;
+	align-self: center;
+}
+.content-file-upload {
+	display: flex;
+}
+.content-file-actions {
+	display: flex;
+	align-self: center;
+}
+.file-status {
+	text-transform: uppercase;
+	color: #919191;
+}
+
+.drag-over {
+	background-color: none !important;
+	height: 300px !important;
+}

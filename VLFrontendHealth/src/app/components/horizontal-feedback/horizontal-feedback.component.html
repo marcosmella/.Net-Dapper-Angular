@@ -1,0 +1,16 @@
+<div class="row mt-20">
+	<div class="float-right fb-hz-box-img pr-20 mt-less-20">
+		<img [src]="statusDictionary[type]" class="fb-hz-img float-right" alt="FeedbackWithoutResults | translate" />
+	</div>
+	<div class="float-left ml-20">
+		<h4 class="fb-hz-h-blue">
+			{{ feedbackTitle | translate }}
+		</h4>
+		<p class="fb-hz-p">
+			{{ description | translate }}
+		</p>
+		<button class="btn-small mt-10 float-left btn-primary-fill" (click)="applyAction()" [hidden]="hiddenButton" [id]="idButton">
+			{{ buttonAction | translate }}
+		</button>
+	</div>
+</div>

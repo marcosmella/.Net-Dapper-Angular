@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>3bdaf915-4214-4647-bf40-61387bb79402</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="Entities\**" />
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="Entities\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="VL.Libraries.Common" Version="1.1.3" />
+    <PackageReference Include="VL.Libraries.TenantDataAccess" Version="1.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VL.Health.Interfaces\VL.Health.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

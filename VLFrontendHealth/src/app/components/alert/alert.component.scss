@@ -1,0 +1,60 @@
+.alert-danger {
+	background-color: rgba(231, 76, 80, 0.4); /* Red */
+}
+.alert-warning {
+	background-color: #faffb1;
+}
+.alert-info {
+	background-color: #def3ff;
+}
+.alert {
+	padding: 15px;
+	color: #282828;
+	margin-bottom: 15px;
+	text-align: left;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: normal;
+	font-family: "OpenSansFallback";
+	display: block;
+	position: relative;
+	width: 100%;
+}
+.alert-content .icon {
+	margin-right: 10px;
+	position: initial;
+	float: left;
+}
+.alert-content .icon-close {
+	cursor: pointer;
+	position: absolute;
+	float: right;
+	top: 15px;
+	right: 20px;
+}
+.alert-message {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.alert-content ul {
+	margin-left: 25px !important;
+	margin-bottom: 0 !important;
+}
+.alert-content ul li {
+	padding-top: 12px;
+	list-style-type: disc;
+}
+.alert-content ul li:first-child {
+	padding-top: 0px;
+}
+/* Aplicar clase para cuanod sea 1 solo error */
+.li-alert {
+	padding-top: 10px !important;
+	list-style-type: none !important;
+	margin-left: -25px;
+	width: 100%;
+}
+.vismaicon-16 {
+	margin-top: 10px;
+}

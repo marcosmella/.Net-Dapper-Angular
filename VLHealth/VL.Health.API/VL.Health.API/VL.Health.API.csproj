@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>f3d431d6-5670-4804-91b8-5ca69cccd21a</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VL.Health.Infrastructure\VL.Health.Infrastructure.csproj" />
+    <ProjectReference Include="..\VL.Health.Interfaces\VL.Health.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Managers\Interfaces\" />
+  </ItemGroup>
+
+</Project>

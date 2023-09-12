@@ -1,0 +1,9 @@
+<span class="vismaicon-16 icon-system-elipsis" id="options" mat-button [matMenuTriggerFor]="menu"></span>
+<mat-menu class="DropDownMenuGrid" #menu="matMenu">
+	<div *ngFor="let action of actions">
+		<button mat-menu-item (click)="action.action(element)" *ngIf="condition(action)" [id]="'btnGrid' + action.icon">
+			<span [class]="'vismaicon-16 mr-10 ' + 'icon-system-' + action.icon"></span
+			>{{ (action.description ? action.description : action.icon) | translate }}
+		</button>
+	</div>
+</mat-menu>

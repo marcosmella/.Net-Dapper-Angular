@@ -1,0 +1,9 @@
+<router-outlet style="height: 100%"></router-outlet>
+<section id="content-wrapper">
+	<mat-drawer-container (backdropClick)="menuServ.isExpanded = false" [hasBackdrop]="menuServ.isExpanded">
+		<mat-drawer [opened]="menuServ.showSideNav" #drawer mode="side" disableClose="true"> </mat-drawer>
+		<mat-drawer-content>
+			<router-outlet style="height: 100%"></router-outlet>
+		</mat-drawer-content>
+	</mat-drawer-container>
+</section>

@@ -1,0 +1,108 @@
+<!-- Form Card -->
+<div id="modal-form">
+	<div class="modal-container-form">
+		<loading-spinner #spinner name="spinner"></loading-spinner>
+		<alert id="errorNotes"></alert>
+		<button class="vismaicon-16 icon-action-close btn-icon float-right" align="end" id="btnClose" (click)="close()"></button>
+		<form class="container" [formGroup]="formNotes" (ngSubmit)="submit()" form-validation>
+			<h1>{{ "note" | translate }}</h1>
+			<fieldset id="login-form">
+				<ul class="row pt-20">
+					<li class="col-md-6">
+						<ng-select
+							[readonly]="isUpdate"
+							[items]="noteTypes"
+							bindLabel="description"
+							autofocus
+							id="noteType"
+							field-validation
+							placeholder="{{ 'noteType' | translate }} *"
+							bindValue="id"
+							formControlName="idNoteType"
+							appendTo="body"
+						>
+						</ng-select>
+						<span class="errorValidationForm" id="noteTypeValidation"></span>
+					</li>
+					<li class="col-md-3" id="pickerIcon">
+						<mat-form-field>
+							<input
+								matInput
+								[matDatepicker]="creationDatePicker"
+								placeholder="{{ 'createDate' | translate }}*"
+								id="creation"
+								field-validation
+								formControlName="creation"
+							/>
+							<mat-datepicker-toggle matSuffix [for]="creationDatePicker"> </mat-datepicker-toggle>
+							<mat-datepicker #creationDatePicker></mat-datepicker>
+						</mat-form-field>
+						<span class="errorValidationForm" id="creationValidation"></span>
+					</li>
+					<li class="col-md-3" id="pickerIcon">
+						<mat-form-field>
+							<input
+								matInput
+								[matDatepicker]="expirationDatePicker"
+								placeholder="{{ 'expirationDate' | translate }}"
+								id="expiration"
+								field-validation
+								formControlName="expiration"
+							/>
+							<mat-datepicker-toggle matSuffix [for]="expirationDatePicker"> </mat-datepicker-toggle>
+							<mat-datepicker #expirationDatePicker></mat-datepicker>
+						</mat-form-field>
+						<span class="errorValidationForm" id="expirationValidation"></span>
+					</li>
+				</ul>
+
+				<ul class="row">
+					<li class="col-md-12">
+						<mat-form-field>
+							<input
+								matInput
+								placeholder="{{ 'reason' | translate }} *"
+								autocomplete="no"
+								formControlName="motive"
+								id="motive"
+								field-validation
+							/>
+						</mat-form-field>
+						<span class="errorValidationForm" id="motiveValidation"></span>
+					</li>
+					<li class="col-md-12">
+						<mat-form-field>
+							<input
+								matInput
+								placeholder="{{ 'description' | translate }} *"
+								autocomplete="no"
+								formControlName="description"
+								id="description"
+								field-validation
+							/>
+						</mat-form-field>
+						<span class="errorValidationForm" id="descriptionValidation"></span>
+					</li>
+				</ul>
+			</fieldset>
+			<div class="mt-30">
+				<div class="row justify-content-between">
+					<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+					<span class="mb-10 mr-20">
+						<button class="btn-regular btn-link mr-20" type="button" (click)="close()" id="cancel">
+							{{ "cancel" | translate }}
+						</button>
+						<button
+							type="submit"
+							[disabled]="formDisabled"
+							id="save"
+							[className]="!formDisabled ? 'btn-regular btn-secondary-fill' : 'btn-regular btn-disabled-fill'"
+						>
+							{{ "save" | translate }}
+						</button>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

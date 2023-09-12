@@ -1,0 +1,258 @@
+/* Button Size */
+
+.btn {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-weight: 600;
+	border-radius: 50px;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.btn-xsmall {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 50px;
+	margin: 0 auto;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.btn-small {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 50px;
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.btn-square-small {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 5px;
+	margin: 0 auto;
+	line-height: 20px;
+	min-width: 30px;
+	min-height: 30px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.btn-regular {
+	font-family: "OpenSansFallback";
+	font-size: 14px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 50px;
+	margin: 0 auto;
+	width: 200px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.btn-large {
+	font-family: "OpenSansFallback";
+	font-size: 14px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 50px;
+	margin: 0 auto;
+	width: 240px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.btn-high {
+	font-family: "OpenSansFallback";
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: 500;
+	border-radius: 50px;
+	margin: 0 auto;
+	width: 340px;
+	height: 55px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.wrapper-button-circle {
+	border-radius: 50px;
+	border: 1px solid #0089d9;
+	padding: 10px;
+	margin: 0 auto;
+	background-color: #fff;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+}
+.btn-icon {
+	top: 3px;
+	right: 3px;
+}
+.link {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	line-height: 16px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: normal;
+	margin: 0 auto;
+	text-align: center;
+	text-transform: uppercase;
+	color: #0089d9;
+	text-decoration: none;
+}
+.link:hover {
+	text-decoration: underline #0089d9;
+}
+.link-snackbar {
+	font-family: "OpenSansFallback";
+	font-size: 13px;
+	line-height: 18px;
+	letter-spacing: 1px;
+	font-style: normal;
+	font-weight: normal;
+	text-align: right;
+	text-transform: uppercase;
+	color: #8ec928;
+	text-decoration: none;
+	float: right;
+}
+.link-snackbar:hover {
+	color: #8ec928;
+	opacity: 0.7;
+}
+.btn-chip {
+	font-size: 12px;
+	line-height: 16px;
+	font-style: normal;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	height: 30px;
+	padding: 6px 10px;
+	width: auto;
+	border-radius: 50px;
+	color: #282828 !important;
+	background-color: #fff !important;
+	border: 1px solid #282828;
+	cursor: pointer;
+}
+
+/* Button Type - Fill */
+
+.btn-primary-fill {
+	color: #fff;
+	background-color: #0089d9;
+	cursor: pointer;
+}
+.btn-primary-fill:hover {
+	color: #fff;
+	background-color: #33a1e1;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.btn-secondary-fill {
+	color: #fff;
+	background-color: #fc990e;
+	cursor: pointer;
+}
+.btn-secondary-fill:hover {
+	color: #fff;
+	background-color: #e88800;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.btn-disabled-fill {
+	color: #fff;
+	background-color: #919191;
+	cursor: default;
+}
+.btn-danger-fill {
+	color: #fff;
+	background-color: #cc0000;
+	cursor: pointer;
+}
+.btn-danger-fill:hover {
+	color: #fff;
+	background-color: #b90000;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.btn-white-fill {
+	color: #0089d9;
+	background-color: #fff;
+	cursor: pointer;
+}
+.btn-link {
+	color: #919191;
+	background-color: transparent;
+	cursor: pointer;
+}
+.btn-link:hover {
+	background-color: #fff;
+	-webkit-box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+	-moz-box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+	box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+}
+/* Button Type - Outline */
+
+.btn-primary-outline {
+	color: #0089d9;
+	background-color: transparent;
+	border: 1px solid #0089d9;
+	cursor: pointer;
+}
+.btn-primary-outline:hover {
+	background-color: #fff;
+	border: none;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.btn-disabled-outline {
+	color: #919191;
+	background-color: transparent;
+	border: 1px solid #919191;
+	cursor: default;
+}
+.btn-filtre-outline {
+	color: #282828;
+	background-color: #fff;
+	border: 1px solid #282828;
+	cursor: pointer;
+}
+.btn-filtre-outline:hover {
+	background-color: #f8f8f8;
+	border: 1px solid #919191;
+}
+
+.pt-8 {
+	padding-top: 8px;
+}

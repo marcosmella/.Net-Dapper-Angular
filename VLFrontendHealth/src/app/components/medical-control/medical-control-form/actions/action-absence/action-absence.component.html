@@ -1,0 +1,59 @@
+<loading-spinner #absenceSpinner name="absenceSpinner"></loading-spinner>
+<form [formGroup]="formAbsenceMedicalControl" form-validation>
+	<ul class="row">
+		<li class="col-md-3">
+			<mat-form-field>
+				<input
+					id="dateFrom"
+					matInput
+					field-validation
+					[matDatepicker]="dateFromDatePicker"
+					placeholder="{{ absenceDateLabel }}"
+					formControlName="dateFrom"
+					[readonly]="editing"
+					(dateChange)="changeFromDateAbsence($event.value)"
+				/>
+				<mat-datepicker-toggle matSuffix [for]="dateFromDatePicker"></mat-datepicker-toggle>
+				<mat-datepicker #dateFromDatePicker></mat-datepicker>
+			</mat-form-field>
+			<span class="errorValidationForm" id="dateFromValidation"></span>
+		</li>
+		<li class="col-md-3">
+			<mat-form-field>
+				<input
+					matInput
+					placeholder="{{ restDaysLabel }}"
+					autocomplete="no"
+					formControlName="restDays"
+					id="restDays"
+					field-validation
+					maxlength="50"
+					disabled="true"
+					[readonly]="editing"
+					type="number"
+				/>
+			</mat-form-field>
+			<span class="errorValidationForm" id="restDaysValidation"></span>
+		</li>
+		<li class="col-md-6">
+			<ng-select
+				id="idAbsenceType"
+				bindValue="id"
+				bindLabel="name"
+				formControlName="idAbsenceType"
+				field-validation
+				[items]="absenceTypesFilter"
+				placeholder="{{ 'absenceType' | translate }}*"
+				appendTo="body"
+				(change)="changeAbsence($event.id)"
+				[ngClass]="'pt-5'"
+				[readonly]="editing"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.name }}">{{ item.name }}</div>
+				</ng-template>
+			</ng-select>
+			<span class="errorValidationForm" id="idAbsenceTypeValidation"></span>
+		</li>
+	</ul>
+</form>

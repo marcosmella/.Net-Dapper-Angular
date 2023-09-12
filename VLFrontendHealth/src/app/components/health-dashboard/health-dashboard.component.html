@@ -1,0 +1,90 @@
+<div id="grid">
+	<div class="row main-content">
+		<div class="col">
+			<div class="row">
+				<div class="col title-section">
+					<app-breadcrumb></app-breadcrumb>
+					<h1>{{ "health" | translate }}</h1>
+				</div>
+			</div>
+			<form>
+				<fieldset id="login-form">
+					<div class="cards-group row pb-20">
+						<mat-card class="card-menu col-sm-12 col-md-4 col-lg-3 mr-30 mt-15 mat-card" *ngIf="'MedicalControls' | accessResource">
+							<div class="card-content">
+								<div class="card-title">
+									<span class="icon-description-blue-healthy-control vismaicon-24" aria-hidden="false"></span>
+									<h2 class="pt-20">{{ "medicalControls" | translate }}</h2>
+								</div>
+								<p class="align-left pb-20">
+									{{ "medicalControlDescription" | translate }}
+								</p>
+							</div>
+							<div class="card-footer">
+								<div class="align-center">
+									<button routerLink="/healthApp/medical-controls" class="btn-regular btn-primary-outline">
+										{{ "viewControls" | translate }}
+									</button>
+								</div>
+							</div>
+						</mat-card>
+						<mat-card class="card-menu col-sm-12 col-md-4 col-lg-3 mr-30 mt-15 mat-card" *ngIf="'ClinicalRecords' | accessResource">
+							<div class="card-content">
+								<div class="card-title">
+									<span class="icon-description-blue-healthy-resume vismaicon-24" aria-hidden="false"></span>
+									<h2 class="pt-20">{{ "clinicalRecords" | translate }}</h2>
+								</div>
+								<p class="align-left pb-20">
+									{{ "clinicalRecordsDescription" | translate }}
+								</p>
+							</div>
+							<div class="card-footer">
+								<div class="align-center">
+									<button routerLink="/healthApp/clinical-records" class="btn-regular btn-primary-outline">
+										{{ "viewClinicalRecords" | translate }}
+									</button>
+								</div>
+							</div>
+						</mat-card>
+						<mat-card class="card-menu col-sm-12 col-md-4 col-lg-3 mr-30 mt-15 mat-card" *ngIf="'Doctors' | accessResource">
+							<div class="card-content">
+								<div class="card-title">
+									<span class="icon-description-blue-healthy-doctor vismaicon-24" aria-hidden="false"></span>
+									<h2 class="pt-20">{{ "doctors" | translate }}</h2>
+								</div>
+								<p class="align-left pb-20">
+									{{ "doctorsDescription" | translate }}
+								</p>
+							</div>
+							<div class="card-footer">
+								<div class="align-center">
+									<button routerLink="/healthApp/doctors" class="btn-regular btn-primary-outline">
+										{{ "viewDoctors" | translate }}
+									</button>
+								</div>
+							</div>
+						</mat-card>
+						<mat-card class="card-menu col-sm-12 col-md-4 col-lg-3 mr-30 mt-15 mat-card" *ngIf="'MedicalServices' | accessResource">
+							<div class="card-content">
+								<div class="card-title">
+									<span class="icon-description-blue-healthy-services vismaicon-24" aria-hidden="false"></span>
+									<h2 class="pt-20">{{ "medicalServices" | translate }}</h2>
+								</div>
+								<p class="align-left pb-20">
+									{{ "medicalServicesDescription" | translate }}
+								</p>
+							</div>
+							<div class="card-footer">
+								<div class="align-center">
+									<button routerLink="/healthApp/medical-services" class="btn-regular btn-primary-outline">
+										{{ "viewMedicalServices" | translate }}
+									</button>
+								</div>
+							</div>
+						</mat-card>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

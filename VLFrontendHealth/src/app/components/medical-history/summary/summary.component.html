@@ -1,0 +1,39 @@
+<mat-card class="mb-20" id="summary-card">
+	<loading-spinner #spinnerSummary name="spinnerSummary"></loading-spinner>
+	<div class="pl-20 pr-20 pt-20">
+		<div class="align-center mb-20">
+			<app-image
+				(onError)="errorImage($event)"
+				[entityTypeId]="idTypeEmployee"
+				[fileTypeId]="idFileEmployee"
+				[id]="idImage"
+				[hideButton]="true"
+				[entityId]="idEmployee"
+			></app-image>
+		</div>
+		<h3 class="align-center mb-20">{{ employeeDetailService.summary.firstName }}</h3>
+	</div>
+	<div class="linea-wide"></div>
+	<div class="summary-date">
+		<div class="summary-profile">
+			<span class="vismaicon-16 icon-description-fileNumber mr-10"></span>
+			<span class="mr-5">{{ "fileNumber" | translate }}:</span>{{ employeeDetailService.summary.fileNumber }}
+		</div>
+		<div class="summary-profile">
+			<span class="vismaicon-16 icon-description-organization-chart mr-10"></span>
+			<span class="mr-5">{{ "directReport" | translate }}:</span> {{ employeeDetailService.summary.directReportName }}
+		</div>
+		<div class="summary-profile">
+			<span class="vismaicon-16 icon-description-fileNumber mr-10"></span>
+			<span class="mr-5">{{ "costCenter" | translate }}:</span> {{ employeeCenterCost }}
+		</div>
+		<div class="summary-profile">
+			<span class="vismaicon-16 icon-description-fileNumber mr-10"></span>
+			<span class="mr-5">{{ "healthInsurance" | translate }}:</span> {{ employeeHealthInsurance }}
+		</div>
+		<div class="summary-profile">
+			<span class="vismaicon-16 icon-description-fileNumber mr-10"></span>
+			<span class="mr-5">{{ "healthInsurancePlan" | translate }}:</span> {{ employeeHealthInsurancePlan }}
+		</div>
+	</div>
+</mat-card>

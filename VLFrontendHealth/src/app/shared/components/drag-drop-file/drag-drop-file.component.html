@@ -1,0 +1,60 @@
+<alert id="uploadFileError"></alert>
+<div class="wrapper-file-manager" id="dropZone">
+	<loading-spinner #spinnerUploadFile name="spinnerUploadFile"></loading-spinner>
+	<ngx-file-drop (onFileDrop)="dropped($event)" contentClassName="drag-over" [id]="id" [multiple]="multiple">
+		<ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+			<div class="d-block dropZone">
+				<div id="dropIcon">
+					<span class="vismaicon-30 icon-system-upload-gray mt-15 align-center"></span>
+				</div>
+				<div class="subtitle align-center mt-10" id="dragDropText">
+					{{ "dragAndDropFileHere" | translate }}
+				</div>
+				<div class="caption-italic align-center">
+					{{ "orYouCan" | translate }}
+				</div>
+				<div class="align-center">
+					<button type="button" class="btn-small btn-primary-fill" (click)="openFileSelector()">
+						{{ "uploadFile" | translate }}
+					</button>
+				</div>
+
+				<div class="caption align-center mt-15">{{ "dataFileTypes" | translate }} {{ acceptFormats }}</div>
+				<div class="caption align-center mt-10">{{ "maxFileSize" | translate }}</div>
+			</div>
+		</ng-template>
+	</ngx-file-drop>
+</div>
+<span *ngIf="(!isDelete && fileDrop.length > 0) || fileData">
+	<h3 class="mt-10">{{ "uploadedFile" | translate }}</h3>
+	<div class="wrapper-list-file-manager">
+		<div class="content-file-upload">
+			<span class="vismaicon-30 icon-system-file-{{ fileIcon }}"></span>
+			<div *ngIf="fileDrop" class="pt-10">
+				<span class="file-name-upload" *ngFor="let item of fileDrop; let i = index">{{ item.relativePath }}</span>
+			</div>
+			<div *ngIf="fileDataName && fileDrop.length === 0" class="pt-10">
+				<span class="file-name-upload">{{ fileDataName }}</span>
+			</div>
+		</div>
+
+		<div class="content-file-actions">
+			<div class="mr-20 file-status">
+				<mat-icon
+					[ngClass]="
+						showSaveIcon
+							? saved
+								? 'vismaicon-16 icon-feedback-success tab-error ml-5'
+								: 'vismaicon-16 icon-feedback-error tab-error ml-5'
+							: ''
+					"
+					aria-hidden="false"
+				></mat-icon>
+				{{ (showSaveIcon ? (saved ? "saved" : "notSaved") : "") | translate }}
+			</div>
+			<div>
+				<app-elipsis-grid *ngIf="actions.length > 0" [element]="fileDrop" [actions]="actions"></app-elipsis-grid>
+			</div>
+		</div>
+	</div>
+</span>

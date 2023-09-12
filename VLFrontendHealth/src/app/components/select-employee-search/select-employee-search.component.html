@@ -1,0 +1,26 @@
+<form id="formEmployeeSearch" [formGroup]="formEmployeeSearch" class="p-0 m-0">
+	<mat-form-field>
+		<input
+      id="employeeSearch"
+      formControlName="lastName"
+			#lastName
+			matInput
+			placeholder="{{ 'employeeSearch' | translate }} {{ isRequired ? '*' : ''}}"
+			aria-label="State"
+			autocomplete="off"
+			[matAutocomplete]="auto"
+			[readonly]="!editing"
+		/>
+		<mat-autocomplete #auto="matAutocomplete" class="mt-20">
+			<mat-option *ngIf="isLoading" class="is-loading">
+				<span class="loading-text">{{ "loading..." | translate }}</span>
+			</mat-option>
+			<ng-container *ngIf="!isLoading">
+				<mat-option (click)="selectEmployee(employee)" *ngFor="let employee of employees" [value]="employee.description">
+					<span class="autoCompleteText">{{ employee.description }}</span>
+				</mat-option>
+			</ng-container>
+		</mat-autocomplete>
+    <mat-icon matSuffix><span class="vismaicon-16 icon-system-search ml-20"></span></mat-icon>
+	</mat-form-field>
+</form>

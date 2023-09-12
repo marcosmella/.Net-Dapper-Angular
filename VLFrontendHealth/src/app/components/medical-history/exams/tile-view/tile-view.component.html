@@ -1,0 +1,21 @@
+<loading-spinner #tileSpinner name="tileSpinner"></loading-spinner>
+<alert id="listError"></alert>
+<div class="file-wrapper" id="file-wrapper">
+	<div class="file-container" *ngFor="let item of exams">
+		<div class="file-type" backgroundImage="{{ item.file?.url }}">
+			<div class="wrapper-file-menu" *ngIf="editing">
+				<app-elipsis-grid [element]="item" [actions]="tileActions"></app-elipsis-grid>
+			</div>
+			<div class="file-format">
+				<img
+					*ngIf="item.file?.fileTypeExtension === uploadFileType.file"
+					class="vismaicon-16 mr-10 icon-system-{{ item.file.iconClass }}"
+					id="imgImportFile"
+				/>
+				<img *ngIf="!item.file" src="/assets/img/avatar-empty.png" id="no-file" />
+			</div>
+		</div>
+		<div class="file-title">{{ "type" | translate }}: {{ item.exam.type }}</div>
+		<div class="file-description" *ngIf="item.file?.file?.description">{{ "name" | translate }}: {{ item.file.file.description }}</div>
+	</div>
+</div>

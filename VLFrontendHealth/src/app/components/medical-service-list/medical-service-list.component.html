@@ -1,0 +1,84 @@
+<div id="grid">
+	<div class="row main-content">
+		<div class="col">
+			<div class="row">
+				<div class="col title-section">
+					<app-breadcrumb></app-breadcrumb>
+					<h1>{{ "medicalServices" | translate }}</h1>
+				</div>
+				<div class="table-actions d-flex mr-15">
+					<a id="create" (click)="create()" class="btn-small btn-primary-fill pt-8">
+						<span class="vismaicon-16 icon-action-add-wh pr-5 btn-icon"></span>{{ "create" | translate }}
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<loading-spinner #spinner name="spinner" id="spinnerMedicalServiceList"></loading-spinner>
+				<div class="col">
+					<mat-card class="table-content mb-30">
+						<alert id="medicalservicesList"></alert>
+						<mat-form-field class="filterGrid">
+							<input
+								matInput
+								(keyup)="applyFilter($event.target.value)"
+								[placeholder]="'search' | translate"
+								autocomplete="no"
+								id="filterMedicalService"
+							/>
+							<mat-icon matSuffix><span class="vismaicon-16 icon-system-search"></span></mat-icon>
+						</mat-form-field>
+						<table mat-table [dataSource]="medicalserviceDataSource" matSort>
+							<ng-container matColumnDef="id">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header>
+									{{ "id" | translate }}
+								</th>
+								<td mat-cell *matCellDef="let element">{{ element.id }}</td>
+							</ng-container>
+							<ng-container matColumnDef="company">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header>
+									{{ "company" | translate }}
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{ element.company }}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="phone">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header>
+									{{ "phoneNumber" | translate }}
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{ element.phone }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="options">
+								<th mat-header-cell *matHeaderCellDef>
+									<div *ngIf="recordsCount > 0" class="m-0 p-0 align-right">
+										<button (click)="exportAsXLSX()" id="exportXLS">
+											<span id="export" class="vismaicon-20 icon-system-excel"></span>
+										</button>
+									</div>
+								</th>
+								<td mat-cell *matCellDef="let element" class="align-right td-icons">
+									<app-elipsis-grid [element]="element" [actions]="actions"></app-elipsis-grid>
+								</td>
+							</ng-container>
+							<tr mat-header-row *matHeaderRowDef="medicalserviceDisplayedColumns"></tr>
+							<tr
+								mat-row
+								(dblclick)="edit(element.id)"
+								(mouseenter)="row.viewOptions = true"
+								(mouseleave)="row.viewOptions = false"
+								*matRowDef="let row; let element; columns: medicalserviceDisplayedColumns"
+							></tr>
+						</table>
+
+						<div>
+							<mat-paginator [pageSizeOptions]="[5, 10, 15, 20, 25]" showFirstLastButtons></mat-paginator>
+						</div>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

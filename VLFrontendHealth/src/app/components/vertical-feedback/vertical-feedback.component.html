@@ -1,0 +1,16 @@
+<div class="fb-empty">
+	<div class="col">
+		<img [src]="statusDictionary[type]" alt="FeedbackWithoutResults | translate" />
+
+		<h1 class="align-center pt-15 pb-15">
+			{{ feedbackTitle | translate }}
+		</h1>
+		<p class="align-center pb-15 h1-feedback">
+			{{ description | translate }}
+		</p>
+
+		<button *ngIf="buttonAction" class="btn-large btn-primary-fill" (click)="applyAction()" [hidden]="hiddenButton">
+			{{ buttonAction | translate }}
+		</button>
+	</div>
+</div>

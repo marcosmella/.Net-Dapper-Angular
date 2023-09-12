@@ -1,0 +1,12 @@
+﻿using System.Collections.Generic;
+using VL.Health.Domain.Entities;
+
+namespace VL.Health.Interfaces.Managers
+{
+    public interface IPathologyManager
+    {
+        List<Pathology> Get(string filter);
+
+        Pathology GetById(int id);
+    }
+}

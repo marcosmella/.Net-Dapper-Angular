@@ -1,0 +1,71 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:31133/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "SQLCONNSTR_VLMetaHomeDB": "connectionMetaHome",
+        "SQLCONNSTR_VLDevDB": "connectionDB",
+        "SQLCONNSTR_VLRedisDB": "redisConnection",
+        "ApplicationInsights_InstrumentationKey": "Key",
+        "MachineKey_DecryptionKey": "otherKey",
+        "MachineKey_ValidationKey": "otherKey",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "UserIdDataAccess": "username",
+        "PasswordDataAccess": "userpassword",
+        "AuditBackendUrl": "ip",
+        "GlobalConfigurationBackendUrl": "ip",
+        "GeoLocationBackendUrl": "ip",
+        "PersonBackEndUrl": "ip",
+        "SecurityBackEndUrl": "ip",
+        "AbsenceBackendUrl": "ip",
+        "BuildId": "1.0",
+        "WebApiAdministrationServiceUrl": "apiAdministrationTokens",
+        "WebApiBusinessServiceUrl": "apiAdministrationConfigUser"
+      }
+    },
+    "VL.Health.Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:31134/"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "SQLCONNSTR_VLMetaHomeDB": "connectionMetaHome",
+        "SQLCONNSTR_VLDevDB": "connectionDB",
+        "SQLCONNSTR_VLRedisDB": "redisConnection",
+        "ApplicationInsights_InstrumentationKey": "Key",
+        "MachineKey_DecryptionKey": "otherKey",
+        "MachineKey_ValidationKey": "otherKey",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "UserIdDataAccess": "username",
+        "PasswordDataAccess": "userpassword",
+        "AuditBackendUrl": "ip",
+        "GlobalConfigurationBackendUrl": "ip",
+        "GeoLocationBackendUrl": "ip",
+        "PersonBackEndUrl": "ip",
+        "SecurityBackEndUrl": "ip",
+        "AbsenceBackendUrl": "ip",
+        "BuildId": "1.0",
+        "WebApiAdministrationServiceUrl": "apiAdministrationTokens",
+        "WebApiBusinessServiceUrl": "apiAdministrationConfigUser"
+      }
+    }
+  }
+}

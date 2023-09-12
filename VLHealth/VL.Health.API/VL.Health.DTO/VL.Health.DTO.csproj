@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>601e71ae-7077-4673-92e9-9afad2728e10</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Doctor\" />
+    <Folder Include="Request\" />
+    <Folder Include="Response\" />
+  </ItemGroup>
+
+</Project>

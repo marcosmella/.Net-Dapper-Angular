@@ -1,0 +1,16 @@
+<div class="row" id="breadcrumb" *ngIf="breadcrumbs">
+	<div class="col mb-5">
+		<span *ngFor="let breadcrumb of breadcrumbs; first as isFirst; last as isLast">
+			<span
+				id="previuspage"
+				*ngIf="isFirst !== isLast && isFirst"
+				(click)="goToPreviousPage()"
+				class="vismaicon-10 icon-special-return-xs mr-5"
+			>
+			</span>
+
+			<a id="{{ breadcrumb.label }}" class="link" (click)="goToUrl(breadcrumb.path)">{{ breadcrumb.label | translate }}</a>
+			<span *ngIf="!isLast" class="pr-5"> /</span>
+		</span>
+	</div>
+</div>

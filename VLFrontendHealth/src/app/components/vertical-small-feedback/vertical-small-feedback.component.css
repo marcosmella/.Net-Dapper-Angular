@@ -1,0 +1,18 @@
+.fb-small-empty {
+	text-align: center;
+	align-content: center;
+}
+.fb-small-empty img {
+	width: 130px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.fb-small-empty h1 {
+	text-align: center;
+	color: #0089d9;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 300;
+	letter-spacing: 1px;
+	line-height: 22px;
+}

@@ -1,0 +1,71 @@
+<!-- <mat-card> -->
+<mat-card class="mb-20">
+	<div class="title-card-content" id="title-card">
+		<div class="d-flex">
+			<span class="vismaicon-20 icon-description-blue-note mt-10 mr-5" aria-hidden="false"></span>
+			<span class="title-card mt-10">
+				{{ "note" | translate }}
+			</span>
+			<app-popover action="click" message="helpNotes" class="mt-10"></app-popover>
+		</div>
+		<div>
+			<app-button [type]="'button'" [class]="'btn-small btn-primary-outline'" id="createNote" (click)="createNote()" *ngIf="editing">
+				<span class="vismaicon-16 icon-action-add-blue btn-icon"></span>
+				{{ "newNote" | translate }}
+			</app-button>
+		</div>
+	</div>
+	<div class="linea-profile"></div>
+	<div class="note-wrapper" id="note-wrapper">
+		<loading-spinner #spinnerNotes name="spinnerNotes"></loading-spinner>
+		<!-- Feedback -->
+		<app-vertical-small-feedback
+			*ngIf="notes.length == 0"
+			type="noNotes"
+			title="{{ 'notFoundNotes' | translate }}"
+			description="{{ 'notFoundNotes' | translate }}"
+		>
+		</app-vertical-small-feedback>
+		<div class="note-container" *ngFor="let note of notes; let idx = index" id="note-container">
+			<div class="note-type-color" [ngStyle]="{ background: note.color }" id="note-type-color"></div>
+			<div class="pl-10 pt-15">
+				<button
+					type="button"
+					[disabled]="!editing"
+					matTooltip="{{ (note.revision ? 'check' : 'uncheck') | translate }}"
+					matTooltipPosition="above"
+					[className]="!note.revision ? 'vismaicon-16 icon-feedback-active-off' : 'vismaicon-16 icon-feedback-active'"
+					(click)="markAsReview(idx, notes)"
+					id="revisionBtn"
+				></button>
+			</div>
+			<div
+				[ngClass]="{
+					'note-motive': true,
+					'cursor-pointer': editing
+				}"
+				(click)="viewNote(idx)"
+				id="note-motive"
+			>
+				{{ note.motive }}
+			</div>
+			<div class="pt-15 mr-30 note-confidential" id="note-confidential">
+				<span [className]="note.type.confidential ? 'vismaicon-16 icon-system-lock cursor-auto' : ''"></span>
+			</div>
+			<div class="note-menu" id="note-menu" *ngIf="editing">
+				<span class="vismaicon-16 icon-system-elipsis" mat-button [matMenuTriggerFor]="menu" id="menuOptions"></span>
+				<mat-menu class="DropDownMenuNote" #menu="matMenu">
+					<button mat-menu-item (click)="editNote(idx)" id="iconEdit">
+						<span class="vismaicon-16 icon-system-edit mr-10"></span>{{ "edit" | translate }}
+					</button>
+					<button mat-menu-item (click)="viewNote(idx)" id="iconView">
+						<span class="vismaicon-16 icon-system-view mr-10"></span>{{ "view" | translate }}
+					</button>
+					<button mat-menu-item (click)="deleteNote(note, idx)" id="iconDelete">
+						<span class="vismaicon-16 icon-system-delete mr-10"></span>{{ "delete" | translate }}
+					</button>
+				</mat-menu>
+			</div>
+		</div>
+	</div>
+</mat-card>

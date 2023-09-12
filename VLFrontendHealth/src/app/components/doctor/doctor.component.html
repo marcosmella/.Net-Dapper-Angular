@@ -1,0 +1,121 @@
+<section id="structure" class="bg-top">
+	<!-- Icon Return -->
+	<a routerLink="/healthApp/doctors">
+		<span id="backArrow" class="vismaicon icon-special-return return"></span>
+	</a>
+
+	<!-- Form Card -->
+	<div class="structure-container-form">
+		<alert id="doctorError"></alert>
+		<mat-card>
+			<loading-spinner #spinner name="spinner"></loading-spinner>
+			<form [formGroup]="formDoctor" (ngSubmit)="submit()" class="container" form-validation>
+				<h1>{{ "doctor" | translate }}</h1>
+				<fieldset id="login-form">
+					<ul class="row">
+						<li class="col-md-6">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'name' | translate }} *"
+									autocomplete="no"
+									formControlName="firstName"
+									id="firstName"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="firstNameValidation"></span>
+						</li>
+						<li class="col-md-6">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'lastName' | translate }} *"
+									autocomplete="no"
+									formControlName="lastName"
+									id="lastName"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="lastNameValidation"></span>
+						</li>
+						<li class="col-md-3">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'enrollment' | translate }} *"
+									autocomplete="no"
+									formControlName="enrollment"
+									id="enrollment"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="enrollmentValidation"></span>
+						</li>
+						<li class="col-md-3" id="enrollmentExpirationDateIcon">
+							<mat-form-field>
+								<input
+									id="enrollmentExpirationDate"
+									matInput
+									field-validation
+									[matDatepicker]="enrollmentExpirationDatePicker"
+									placeholder="{{ 'expiration' | translate }}"
+									formControlName="enrollmentExpirationDate"
+								/>
+								<mat-datepicker-toggle matSuffix [for]="enrollmentExpirationDatePicker"></mat-datepicker-toggle>
+								<mat-datepicker #enrollmentExpirationDatePicker></mat-datepicker>
+							</mat-form-field>
+							<span class="errorValidationForm" id="enrollmentExpirationDateValidation"></span>
+						</li>
+						<li class="col-md-3">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'documentIdentifier' | translate }} *"
+									autocomplete="no"
+									formControlName="documentNumber"
+									id="documentNumber"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="documentNumberValidation"></span>
+						</li>
+						<li class="col-md-3" id="documentExpirationDateIcon">
+							<mat-form-field>
+								<input
+									id="documentExpirationDate"
+									matInput
+									field-validation
+									[matDatepicker]="documentExpirationDatePicker"
+									placeholder="{{ 'expiration' | translate }}"
+									formControlName="documentExpirationDate"
+								/>
+								<mat-datepicker-toggle matSuffix [for]="documentExpirationDatePicker"></mat-datepicker-toggle>
+								<mat-datepicker #documentExpirationDatePicker></mat-datepicker>
+							</mat-form-field>
+							<span class="errorValidationForm" id="documentExpirationDateValidation"></span>
+						</li>
+					</ul>
+				</fieldset>
+				<div class="mt-30">
+					<div class="row justify-content-between">
+						<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+						<span class="d-flex">
+							<a id="cancel" routerLink="/healthApp/doctors" class="btn-regular btn-link pt-8">
+								{{ "cancel" | translate }}
+							</a>
+							<app-button
+								[disabled]="!formDoctor.valid || !formDoctor.dirty"
+								id="save"
+								[type]="'submit'"
+								[class]="'btn-regular btn-secondary-fill mr-30 ml-20'"
+							>
+								{{ "save" | translate }}
+							</app-button>
+						</span>
+					</div>
+				</div>
+			</form>
+		</mat-card>
+	</div>
+</section>

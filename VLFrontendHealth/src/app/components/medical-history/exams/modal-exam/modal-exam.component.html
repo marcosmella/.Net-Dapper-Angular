@@ -1,0 +1,109 @@
+<!-- Form Card -->
+<div class="modal-body">
+	<div id="modal-form">
+		<div class="modal-container-form">
+			<loading-spinner #spinner name="spinner"></loading-spinner>
+			<alert id="examError"></alert>
+			<button class="vismaicon-16 icon-action-close btn-icon float-right" id="btnClose" (click)="cancel()"></button>
+			<form class="container" [formGroup]="formExamUpload" form-validation (ngSubmit)="submit()">
+				<h1>{{ "addFile" | translate }}</h1>
+				<fieldset id="login-form" class="mt-20">
+					<ul class="row">
+						<li class="col-md-6">
+							<ng-select
+								[items]="fileTypeDescription"
+								bindLabel="description"
+								placeholder="{{ 'fileType' | translate }} *"
+								bindValue="id"
+								formControlName="idFileType"
+								id="idFileType"
+								field-validation
+								appendTo="body"
+								[clearable]="false"
+								(change)="showDragAndDrop($event)"
+							>
+							</ng-select>
+							<span class="errorValidationForm" id="idFileTypeValidation"></span>
+						</li>
+						<li class="col-md-3" id="pickerIcon1">
+							<mat-form-field>
+								<input
+									id="examDate"
+									matInput
+									[matDatepicker]="examDatePicker"
+									placeholder="{{ 'examDate' | translate }} *"
+									formControlName="examDate"
+									(dateChange)="enableExpirationDate()"
+									field-validation
+								/>
+								<mat-datepicker-toggle matSuffix [for]="examDatePicker"></mat-datepicker-toggle>
+								<mat-datepicker #examDatePicker></mat-datepicker>
+							</mat-form-field>
+							<span class="errorValidationForm" id="examDateValidation"></span>
+						</li>
+						<li class="col-md-3" id="pickerIcon2">
+							<mat-form-field>
+								<input
+									id="expirationDate"
+									matInput
+									[matDatepicker]="expirationDatePicker"
+									placeholder="{{ 'expirationDate' | translate }}"
+									formControlName="expirationDate"
+									[disabled]="isDisabledExpirationDate && !isUpdate"
+									(dateChange)="checkValidators()"
+									field-validation
+								/>
+								<mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+								<mat-datepicker #expirationDatePicker></mat-datepicker>
+							</mat-form-field>
+							<span class="errorValidationForm" id="expirationDateValidation"></span>
+						</li>
+					</ul>
+					<ul class="row">
+						<li class="col-md-12">
+							<div class="mt-less-15">
+								<div>
+									<app-drag-drop-file
+										*ngIf="formExamUpload.value.idFileType"
+										[acceptFormats]="acceptFormats"
+										[entityId]="idEmployee"
+										[fileTypeId]="formExamUpload.value.idFileType"
+										[fileType]="fileType"
+										[entityTypeId]="entityTypeIdEmployee"
+										[active]="active"
+										(fileName)="setFilename($event)"
+										#dragAndDropFile
+										[ellipsisActions]="ellipsisActions"
+										(onError)="errorImage($event)"
+										required
+										[updateFileData]="updateData"
+										[id]="'dragDropExam'"
+										[multiple]="false"
+									></app-drag-drop-file>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</fieldset>
+				<mat-card-actions class="mt-30">
+					<div class="row justify-content-between">
+						<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+						<span class="mb-10 mr-20">
+							<app-button id="cancel" [type]="'button'" [class]="'btn-regular btn-link'" (click)="cancel()">
+								{{ "cancel" | translate }}
+							</app-button>
+							<app-button
+								id="save"
+								[type]="'submit'"
+								[class]="'btn-regular btn-secondary-fill'"
+								[disabled]="!formExamUpload.valid || !formExamUpload.dirty || duplicatedExams"
+							>
+								{{ "save" | translate }}
+							</app-button>
+						</span>
+					</div>
+				</mat-card-actions>
+			</form>
+		</div>
+	</div>
+</div>

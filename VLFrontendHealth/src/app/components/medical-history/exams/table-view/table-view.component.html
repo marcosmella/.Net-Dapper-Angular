@@ -1,0 +1,89 @@
+<div class="row mt-30" id="tableView">
+	<loading-spinner #tableSpinner name="tableSpinner"></loading-spinner>
+	<alert id="tableViewError"></alert>
+	<div class="col">
+		<div class="table-content mb-30">
+			<table mat-table [dataSource]="tableViewDataSource" matSort>
+				<ng-container matColumnDef="file">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>
+						{{ "file" | translate }}
+					</th>
+					<td mat-cell *matCellDef="let element">
+						<div class="file-format">
+							<img
+								*ngIf="element.file?.fileTypeExtension === uploadFileType.file"
+								class="vismaicon-16 mr-10 icon-system-{{ element.file.iconClass }}"
+								id="viewFile"
+							/>
+							<app-image
+								*ngIf="element.file?.fileTypeExtension === uploadFileType.image"
+								[dataImage]="element.file.dataImage"
+								id="viewImage"
+								[hideButton]="true"
+								[class]="'file-format'"
+								[source]=""
+							></app-image>
+							<img *ngIf="!element.file" src="/assets/img/avatar-empty.png" id="no-file" />
+						</div>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="examType">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>
+						{{ "examType" | translate }}
+					</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.type }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>
+						{{ "name" | translate }}
+					</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.name }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="examDate">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>
+						{{ "examDate" | translate }}
+					</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.examDate | date: userPreference.dateFormat.format:"":userPreference.countryCodeFormat.format }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="expirationDate">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>
+						{{ "expirationDate" | translate }}
+					</th>
+					<td mat-cell *matCellDef="let element">
+						{{ element.expirationDate | date: userPreference.dateFormat.format:"":userPreference.countryCodeFormat.format }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="options">
+					<th mat-header-cell *matHeaderCellDef class="actions"></th>
+					<td mat-cell *matCellDef="let element" class="align-right td-icons">
+						<div>
+							<app-elipsis-grid [element]="element" [actions]="tableViewActions" *ngIf="editing"></app-elipsis-grid>
+						</div>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="tableViewDisplayedColumns"></tr>
+				<tr
+					mat-row
+					(mouseenter)="row.viewOptions = true"
+					(mouseleave)="row.viewOptions = false"
+					*matRowDef="let row; columns: tableViewDisplayedColumns"
+				></tr>
+			</table>
+
+			<div>
+				<mat-paginator [pageSizeOptions]="[25, 50]" showFirstLastButtons></mat-paginator>
+			</div>
+		</div>
+	</div>
+</div>

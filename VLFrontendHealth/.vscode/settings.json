@@ -1,0 +1,19 @@
+{
+	"workbench.iconTheme": "vscode-icons",
+	"vsicons.dontShowNewVersionMessage": true,
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"git.confirmSync": false,
+	"window.zoomLevel": 2,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"git.enableSmartCommit": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"explorer.confirmDelete": false,
+	"tslint.exclude": "null",
+	"angular.enable-strict-mode-prompt": false,
+	"editor.formatOnSave": true
+}

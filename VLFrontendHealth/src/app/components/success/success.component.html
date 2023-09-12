@@ -1,0 +1,28 @@
+<section action="createStructure" id="structure" class="bg-top">
+	<!-- {{ state$ | json}} -->
+	<!-- Flow Feedback: Success -->
+	<div class="feedback-wrapper" id="feedback">
+		<mat-card class="feedback-content" id="content">
+			<img [src]="successServ.data.imageFeedBack" />
+			<h1>{{ successServ.data.title | translate }}</h1>
+			<p>{{ successServ.data.actionFinalized }} {{ successServ.data.description }}</p>
+			<p>{{ successServ.data.optionalLastText }}</p>
+			<p (click)="executeAction()">
+				<span class="link link-pointer"> {{ successServ.data.optionalActionText }} </span>
+			</p>
+			<mat-card-actions id="actions">
+				<div class="fb-actions">
+					<button (click)="actionContinue()" *ngIf="successServ.data.actionContinue" class="btn-large btn-primary-fill" id="continue">
+						{{ successServ.data.actionContinue }}
+					</button>
+					<button (click)="detail()" *ngIf="successServ.data.actionDetail" class="btn-large btn-primary-fill" id="detail">
+						{{ successServ.data.actionDetail }}
+					</button>
+					<button (click)="finish()" class="btn-large btn-primary-outline" id="finish">
+						{{ successServ.data.actionFinish | translate }}
+					</button>
+				</div>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</section>

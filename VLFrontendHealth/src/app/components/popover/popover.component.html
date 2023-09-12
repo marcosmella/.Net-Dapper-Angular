@@ -1,0 +1,24 @@
+<div class="help">
+	<span
+		class="vismaicon-16 icon-system-help"
+		[mdePopoverTriggerFor]="appPopover"
+		[mdePopoverTriggerOn]="action"
+		#popoverTrigger="mdePopoverTrigger"
+		id="popover"
+	>
+	</span>
+	<mde-popover
+		#appPopover="mdePopover"
+		[mdePopoverPositionY]="positionY"
+		[mdePopoverPositionX]="positionX"
+		[mdePopoverOverlapTrigger]="false"
+		mdePopoverArrowOffsetX="12"
+		mdePopoverArrowWidth="10"
+	>
+		<mat-card style="max-width: 300px;">
+			<mat-card-content class="popover-content">
+				{{ message | translate }}
+			</mat-card-content>
+		</mat-card>
+	</mde-popover>
+</div>

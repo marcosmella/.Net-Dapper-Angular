@@ -1,0 +1,21 @@
+<div id="modal-validation">
+	<a (click)="onClose()">
+		<span class="vismaicon-16 icon-action-close"></span>
+	</a>
+	<div mat-dialog-title class="modal-title-validation">
+		<h1>{{ data.title | translate }}</h1>
+	</div>
+	<div mat-dialog-content>
+		<p>{{ data.message | translate }}</p>
+	</div>
+	<alert id="warningToast"></alert>
+	<alert id="attentionToast"></alert>
+	<div class="modal-actions">
+		<button (click)="onClose()" *ngIf="data.noButtonMessage" class="btn-small btn-link" id="cancel">
+			{{ data.noButtonMessage | translate }}
+		</button>
+		<button (click)="onOkClick()" *ngIf="data.okButtonMessage" cdkFocusInitial class="btn-small btn-secondary-fill" id="accept">
+			{{ data.okButtonMessage | translate }}
+		</button>
+	</div>
+</div>

@@ -1,0 +1,123 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "VL.Health.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/VL.Health.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VL.Health.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VL.Health.Domain/1.0.0": {
+      "type": "project",
+      "path": "../VL.Health.Domain/VL.Health.Domain.csproj",
+      "msbuildProject": "../VL.Health.Domain/VL.Health.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "VL.Health.Domain >= 1.0.0",
+      "VL.Libraries.Client >= 1.1.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\marco\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Infrastructure\\VL.Health.Infrastructure.csproj",
+      "projectName": "VL.Health.Infrastructure",
+      "projectPath": "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Infrastructure\\VL.Health.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Infrastructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "projectReferences": {
+            "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Domain\\VL.Health.Domain.csproj": {
+              "projectPath": "C:\\Users\\marco\\Downloads\\Laburo\\Develop\\VLHealth\\VL.Health.API\\VL.Health.Domain\\VL.Health.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
+        "dependencies": {
+          "VL.Libraries.Client": {
+            "target": "Package",
+            "version": "[1.1.3, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "No se encuentra el paquete VL.Libraries.Client. No existe ningún paquete con este id. en los orígenes: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "VL.Libraries.Client",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

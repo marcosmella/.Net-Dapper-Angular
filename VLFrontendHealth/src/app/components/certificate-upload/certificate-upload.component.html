@@ -1,0 +1,42 @@
+<loading-spinner #spinnerImage name="spinnerImage" id="spinnerImage"></loading-spinner>
+<alert id="warningFileExtension"></alert>
+<div class="row mt-20 mb-20">
+	<div class="col-md-4">
+		<div class="upload-container">
+			<img [attr.src]="sourceFile" appFileManagement class="none" [ngStyle]="styleInner" [id]="id" />
+			<label *ngIf="hideButton" for="file{{ id }}" id="iconUploadFile">
+				<div class="d-grid">
+					<span class="vismaicon-40 icon-description-blue-search-file mt-10 center"></span>
+					<span class="mt-15 mb-20 caption-main align-center">{{ "uploadFile" | translate }}</span>
+				</div>
+				<input
+					type="{{ uploadFileType.file }}"
+					name="file{{ id }}"
+					id="file{{ id }}"
+					class="none mt-20"
+					imageDefault="sourceFile"
+					(change)="addFile($event.target.files)"
+					accept="{{ acceptFileType }}"
+				/>
+			</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<ul class="row">
+			<li class="col-md-12">
+				<div class="caption">{{ "format" | translate }}: {{ formatAllowFilesExtension(allowedExtensions) }}</div>
+				<div class="caption">{{ "maxSize" | translate }}: 2.00MB</div>
+				<div class="mt-20 ml-less-5" *ngIf="isAllowed">
+					<mat-icon
+						[ngClass]="
+							saved ? 'vismaicon-16 icon-feedback-success tab-error ml-5' : 'vismaicon-16 icon-feedback-error tab-error ml-5'
+						"
+						aria-hidden="false"
+					></mat-icon>
+
+					{{ (saved ? "saved" : "notSaved") | translate }}
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

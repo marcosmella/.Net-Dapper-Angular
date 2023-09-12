@@ -1,0 +1,125 @@
+#split-board .mat-card,
+#employee .mat-card {
+	box-shadow: 2px 0px 6px 0px #d1d1d1;
+}
+#employee .mat-expansion-panel-header {
+	padding: 0px 30px 0px 0px;
+	height: 50px;
+}
+#modal-form .mat-expansion-panel-header {
+	padding: 0px 10px 0px 0px;
+	height: 50px;
+}
+#modal-form .mat-expansion-panel-body,
+#structure .mat-expansion-panel-body,
+#employee .mat-expansion-panel-body {
+	padding: 0;
+}
+#modal-form .mat-expansion-indicator::after,
+#grid .mat-expansion-indicator::after,
+#structure .mat-expansion-indicator::after,
+#split-board .mat-expansion-indicator::after,
+#employee .mat-expansion-indicator::after {
+	padding: 5px;
+	margin-top: -10px;
+}
+#split-board .mat-card,
+#employee .mat-card {
+	padding: 0;
+}
+
+#content-tab-employee {
+	width: 100%;
+	padding: 35px 20px 35px 35px;
+	overflow: hidden;
+}
+#employee .title-tab {
+	font-family: "PFBeauSansPro";
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 600;
+	color: #282828;
+}
+#modal-form .mat-expansion-panel-header-title,
+#split-board .mat-expansion-panel-header-title,
+#employee .mat-expansion-panel-header-title {
+	font-family: "PFBeauSansPro";
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 600;
+	color: #282828;
+}
+#employee .caption-light {
+	text-transform: uppercase;
+}
+#modal-form .mat-expansion-panel-header-description,
+#structure .mat-expansion-panel-header-description,
+#split-board .mat-expansion-panel-header-description,
+#employee .mat-expansion-panel-header-description {
+	text-transform: uppercase;
+	font-family: "OpenSansFallback", sans-serif;
+	color: #919191;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 300;
+	text-align: right;
+	margin-top: 0;
+}
+#modal-form mat-panel-description,
+#structure mat-panel-description,
+#split-board mat-panel-description,
+#employee mat-panel-description {
+	display: block;
+}
+#modal-form .mat-expansion-panel-header-title,
+#split-board .mat-expansion-panel-header-title,
+#employee .mat-expansion-panel-header-title {
+	margin-right: 0;
+}
+.mat-icon.tab-error {
+	height: 16px;
+	width: 16px;
+	padding-right: 20px;
+	color: #cc0000;
+}
+
+//* Form style *//
+.date-employee ul li {
+	padding-top: 0px !important;
+}
+#login-form .add-icon-space,
+#modal-form .add-icon-space,
+#split-board .add-icon-space,
+#employee .add-icon-space {
+	padding: 0 5px;
+	top: 0px;
+}
+#split-board .add-icon-space,
+#employee .add-icon-space {
+	padding: 0 5px;
+	top: 0px;
+}
+#split-board .mat-card .mat-form-field,
+#employee .mat-card .mat-form-field {
+	padding-right: 15px;
+}
+#split-board .mat-card .mat-form-field:last-child,
+#employee .mat-card .mat-form-field:last-child {
+	padding-right: 0;
+}
+#employee .mat-card .col-md-10 {
+	padding-left: 0;
+	padding-right: 0;
+}
+#split-board .mat-form-field-suffix,
+#employee .mat-form-field-suffix {
+	bottom: 0px;
+}
+#split-board .mat-radio-button,
+#employee .mat-radio-button {
+	padding: 15px 20px 15px 0px;
+}
+#employee .mat-paginator-page-size-select {
+	margin: 10px 0 0px 10px;
+	width: 56px;
+}

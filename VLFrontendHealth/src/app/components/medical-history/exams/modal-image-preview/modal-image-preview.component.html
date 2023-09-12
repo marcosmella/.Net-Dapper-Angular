@@ -1,0 +1,16 @@
+<div>
+	<loading-spinner #spinner name="spinnerView"></loading-spinner>
+	<alert id="viewError"></alert>
+	<div class="modal-container-form">
+		<button class="vismaicon-16 icon-action-close btn-icon float-right" align="end" id="btnClose" (click)="cancel()"></button>
+		<h1>{{ data?.fileTypeDescription }}</h1>
+		<h4 class="caption">{{ data?.description }}</h4>
+
+		<alert id="fileWarningId"></alert>
+		<div class="align-center">
+			<app-image *ngIf="isValidExtension()" [dataImage]="data.dataImage" id="viewImage" [hideButton]="true" [class]="'file-format'">
+			</app-image>
+		</div>
+		<mat-card-actions class="mt-30"></mat-card-actions>
+	</div>
+</div>

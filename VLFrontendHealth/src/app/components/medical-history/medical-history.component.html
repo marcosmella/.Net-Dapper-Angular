@@ -1,0 +1,67 @@
+<div id="medicalHistory" class="center">
+	<div class="row main-content">
+		<div class="col">
+			<!-- Breadcrumbs -->
+			<div class="row justify-content-between">
+				<div class="col title-section">
+					<app-breadcrumb></app-breadcrumb>
+					<h1>
+						{{ "medicalHistory" | translate }}
+					</h1>
+				</div>
+				<div class="col align-right" *ngIf="!editing">
+					<app-button
+						type="button"
+						class="btn-regular btn-primary-fill"
+						(click)="setEnableEditing(true)"
+						id="editMedicalHistory"
+						[hidden]="editing"
+					>
+						<span class="vismaicon-16 icon-system-edit-wh btn-icon"></span>
+						{{ "edit" | translate }}
+					</app-button>
+					<button
+						id="cancel"
+						type="button"
+						class="btn-regular btn-link"
+						(click)="setEnableEditing(false)"
+						id="editMedicalHistory"
+						[hidden]="!editing"
+					>
+						{{ "cancel" | translate }}
+					</button>
+				</div>
+			</div>
+			<alert id="medicalHealthError"></alert>
+			<!-- Content -->
+			<div class="col">
+				<div class="row">
+					<!-- Employee information -->
+					<div class="col-sm-12 col-lg-3">
+						<app-summary [editing]="editing" [idEmployee]="idEmployee"></app-summary>
+						<app-notes *ngIf="idEmployee" [idEmployee]="idEmployee" [editing]="editing"></app-notes>
+					</div>
+					<!-- Tab options -->
+					<div class="col-sm-12 col-lg-9">
+						<loading-spinner #spinner name="spinner"></loading-spinner>
+						<mat-tab-group mat-stretch-tabs [disableRipple]="true" animationDuration="0ms" class="tab-card-content">
+							<mat-tab [label]="'generalData' | translate">
+								<app-general-data
+									[editing]="editing"
+									[idEmployee]="idEmployee"
+									[fileNumber]="employeeDetailService.summary.fileNumber"
+								></app-general-data>
+							</mat-tab>
+							<mat-tab [label]="'vaccines' | translate">
+								<app-vaccines [idEmployee]="idEmployee" [enableEditing]="editing"></app-vaccines>
+							</mat-tab>
+							<mat-tab [label]="'exams' | translate">
+								<app-exams [editing]="editing" [idEmployee]="idEmployee"></app-exams>
+							</mat-tab>
+						</mat-tab-group>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<div id="modal-form">
+	<div class="modal-container-form">
+		<div *ngIf="dataFile">
+			<img id="imagen" src="{{ dataFile }}" class="viewer-image" />
+		</div>
+
+		<div *ngIf="protectedUrl">
+			<ngx-doc-viewer [url]="protectedUrl" viewerUrl="" viewer="url" class="viewer-file"></ngx-doc-viewer>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div id="content-tab-employee">
+	<alert id="errorFiles"></alert>
+	<loading-spinner #examSpinner name="examSpinner"></loading-spinner>
+	<fieldset id="login-form">
+		<div class="col-md-6 pt-5">
+			<span aria-hidden="false" class="icon-description-blue-generate-doc vismaicon-24 mt-10 mr-10"></span>
+			<span class="title-tab">{{ "medicalExams" | translate }}</span>
+		</div>
+		<ul class="row pb-20 pt-20">
+			<li class="col-md-12 mt-less-30">
+				<app-horizontal-feedback
+					*ngIf="!hasExams"
+					type="addImport"
+					feedbackTitle="youDoNotHaveAnyRegistration"
+					description="youCanAddYourFilesFromHere"
+					buttonAction="add"
+					[hiddenButton]="hasExams || !editing"
+					(onButtonAction)="openModalExams()"
+					idButton="addExam"
+				></app-horizontal-feedback>
+			</li>
+		</ul>
+		<div class="align-right d-flex">
+			<span class="d-inline-flex" *ngIf="editing && showElipsisOptions && hasExams">
+				<button type="button" id="btnTile" class="ml-10" (click)="changeView('tile')">
+					<span class="vismaicon-20 icon-description-blue-tile" [matTooltip]="'tileView' | translate"></span>
+				</button>
+				<button type="button" id="btnList" class="ml-10" (click)="changeView('list')">
+					<span class="vismaicon-20 icon-description-blue-table" [matTooltip]="'tableView' | translate"></span>
+				</button>
+			</span>
+			<span class="ml-10">
+				<div class="wrapper-button-circle" *ngIf="editing && showElipsisOptions">
+					<app-elipsis-grid [element]="exams" [actions]="globalActions"></app-elipsis-grid>
+				</div>
+			</span>
+
+			<span class="ml-10">
+				<button type="button" class="btn-small btn-primary-outline" id="btnAdd" *ngIf="editing && hasExams" (click)="openModalExams()">
+					<span class="vismaicon-16 icon-action-add-blue btn-icon"></span>
+					{{ "add" | translate }}
+				</button>
+			</span>
+		</div>
+
+		<app-table-view
+			[files]="files"
+			[exams]="exams"
+			[editing]="editing"
+			[idEmployee]="idEmployee"
+			*ngIf="!viewAsTable && hasExams"
+			(modalExam)="saveExamData($event)"
+			(updateTable)="getExams()"
+		></app-table-view>
+		<app-tile-view
+			[files]="files"
+			[exams]="exams"
+			[editing]="editing"
+			[idEmployee]="idEmployee"
+			*ngIf="viewAsTable && hasExams"
+			(modalExam)="saveExamData($event)"
+			(updateTable)="getExams()"
+		></app-tile-view>
+	</fieldset>
+</div>

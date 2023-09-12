@@ -1,0 +1,141 @@
+<div id="content-tab-employee">
+	<form [formGroup]="formGeneralData" form-validation>
+		<loading-spinner #spinnerGeneralData name="spinnerGeneralData"></loading-spinner>
+		<fieldset id="login-form">
+			<div class="row mb-15">
+				<div class="col-md-6 pt-5">
+					<span aria-hidden="false" class="icon-description-blue-employee vismaicon-24 mt-10 mr-10"></span>
+					<span class="title-tab">{{ "background" | translate }}</span>
+				</div>
+				<div class="col-md-6 align-right">
+					<app-button
+						id="submit"
+						(click)="submit()"
+						[type]="'submit'"
+						*ngIf="editing"
+						[class]="'btn-small btn-secondary-fill'"
+						[hidden]="formGeneralData.pristine || !formGeneralData.valid"
+					>
+						{{ "save" | translate }}
+					</app-button>
+				</div>
+			</div>
+			<div class="row pb-10 pt-15">
+				<div class="col-md-4 pt-15">
+					<span class="caption mt-20">{{ "isRiskGroup" | translate }} *</span>
+				</div>
+				<div class="col-md-6">
+					<div class="d-inline-block">
+						<mat-radio-group id="isRiskGroup" name="isRiskGroup" formControlName="isRiskGroup" field-validation>
+							<mat-radio-button id="yes" [value]="true">{{ "yes" | translate }}</mat-radio-button>
+							<mat-radio-button id="no" [value]="false">{{ "no" | translate }}</mat-radio-button>
+						</mat-radio-group>
+						<span class="errorValidationForm" id="isRiskGroupValidation"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row pb-10">
+				<div class="col-md-4 pt-15">
+					<span class="caption mt-15">{{ "bloodPresure" | translate }} *</span>
+				</div>
+				<div class="col-md-8">
+					<div class="d-inline-block">
+						<mat-radio-group id="idBloodPressure" name="idBloodPressure" formControlName="idBloodPressure" field-validation>
+							<mat-radio-button id="low" [value]="2">{{ "low" | translate }}</mat-radio-button>
+							<mat-radio-button id="normal" [value]="1">{{ "normal" | translate }}</mat-radio-button>
+							<mat-radio-button id="high" [value]="3">{{ "high" | translate }}</mat-radio-button>
+						</mat-radio-group>
+						<span class="errorValidationForm" id="idBloodPressureValidation"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row pb-10 pt-20">
+				<div class="col-md-4 pt-10">
+					<span class="caption mt-15">{{ "bloodType" | translate }} *</span>
+				</div>
+				<div class="col-md-6">
+					<ng-select
+						[items]="bloodTypes"
+						bindValue="id"
+						bindLabel="description"
+						[appendTo]="'body'"
+						[placeholder]="'bloodType' | translate"
+						formControlName="idBloodType"
+						id="idBloodType"
+						field-validation
+					>
+					</ng-select>
+					<span class="errorValidationForm" id="idBloodTypeValidation"></span>
+				</div>
+			</div>
+
+			<div class="row pb-10 pt-20">
+				<div class="col-md-4">
+					<span class="caption mt-15">{{ "doYouHaveDisability" | translate }}</span>
+				</div>
+				<div class="col-md-6">
+					<ng-select
+						[items]="disabilities"
+						appendTo="body"
+						bindLabel="description"
+						placeholder="{{ 'disability' | translate }}"
+						bindValue="id"
+						formControlName="idDisability"
+						id="idDisability"
+						field-validation
+						[disabled]="!editing"
+					>
+					</ng-select>
+					<span class="errorValidationForm" id="idDisabilityValidation"></span>
+				</div>
+			</div>
+			<div class="linea-tab"></div>
+			<div class="row mb-20 mt-20">
+				<div class="col-md-12">
+					<span aria-hidden="false" class="icon-description-blue-healthy-control vismaicon-24 mt-10 mr-10"></span>
+					<span class="title-tab">{{ "medicalBackground" | translate }}</span>
+				</div>
+				<div class="col-md-12 pl-5 pt-15 pb-20">
+					<app-pathologies
+						id="idPathologies"
+						field-validation
+						formControlName="idPathologies"
+						[pathologies]="pathologies"
+						[disabled]="!editing"
+						(emitPathologies)="setPathology($event)"
+					></app-pathologies>
+				</div>
+			</div>
+			<div class="linea-tab pb-10"></div>
+			<div class="col-md-12">
+				<div class="col-md-12 d-flex">
+					<div class="col-md-6 mb-20">
+						<span aria-hidden="false" class="icon-description-blue-healthy-control vismaicon-24 mt-10 mr-10"></span>
+						<span class="title-tab">{{ "medicalControls" | translate }}</span>
+					</div>
+					<div *ngIf="editing" class="col-md-6 mr-25 mb-25 mt-10 align-right">
+						<button
+							type="button"
+							class="btn-small btn-primary-outline"
+							type="button"
+							id="addMedicalControl"
+							(click)="clickAddMedicalControl()"
+						>
+							<span class="vismaicon-16 icon-action-add-blue btn-icon"></span>
+							{{ "add" | translate }}
+						</button>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<div class="col-md-12">
+		<app-medical-control-list
+			#medicalControlList
+			[itemsPerPage]="6"
+			[fromMedicalHistory]="true"
+			[idEmployee]="idEmployee"
+			[editing]="editing"
+		></app-medical-control-list>
+	</div>
+</div>

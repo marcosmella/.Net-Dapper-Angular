@@ -1,0 +1,40 @@
+<loading-spinner #virtualAttentionSpinner name="virtualAttentionSpinner"></loading-spinner>
+<form [formGroup]="formVirtualAttentionMedicalControl" form-validation>
+	<ul class="row">
+		<li class="col-md-3">
+			<mat-form-field>
+				<input
+					id="testDate"
+					matInput
+					field-validation
+					[matDatepicker]="testDateDatePicker"
+					placeholder="{{ 'testDate' | translate }}*"
+					formControlName="testDate"
+					[max]="today"
+				/>
+				<mat-datepicker-toggle matSuffix [for]="testDateDatePicker"></mat-datepicker-toggle>
+				<mat-datepicker #testDateDatePicker></mat-datepicker>
+			</mat-form-field>
+			<span class="errorValidationForm" id="testDateValidation"></span>
+		</li>
+		<li class="col-md-3">
+			<ng-select
+				id="id"
+				bindLabel="description"
+				formControlName="testResult"
+				field-validation
+				[items]="testResult"
+				bindValue="id"
+				placeholder="{{ 'testResult' | translate }}*"
+				appendTo="body"
+				(change)="setMedicalControlVirtualAttention()"
+				[readonly]="editing"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.description }}">{{ item.description }}</div>
+				</ng-template>
+			</ng-select>
+			<span class="errorValidationForm" id="testResultValidation"></span>
+		</li>
+	</ul>
+</form>

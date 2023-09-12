@@ -1,0 +1,5 @@
+<span *ngIf="data.icon" id="snackBar" class="snackIcon icon-feedback-success-fill cursor-auto vismaicon-24"></span>
+<span [id]="data.message"> {{ data.message | translate }} </span>
+<button *ngIf="data.action" id="snackBarAction" class="link-snackbar" (click)="snackBarRef.dismissWithAction(true)">
+	{{ data.action | translate }}
+</button>

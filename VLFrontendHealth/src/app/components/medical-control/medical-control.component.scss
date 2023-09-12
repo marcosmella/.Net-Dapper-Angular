@@ -1,0 +1,27 @@
+.card-box {
+	min-width: 400px;
+	max-width: 400px;
+	height: auto;
+	border-radius: 20px;
+	box-shadow: 0 2px 6px 0 #ddd;
+	background-color: #fff;
+	padding: 30px;
+	margin: 0 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.center {
+	margin: 0 auto;
+}
+h1 {
+	color: #282828;
+}
+.structure-container p {
+	padding-top: 0;
+	font-size: 14px;
+	padding-bottom: 20px;
+}

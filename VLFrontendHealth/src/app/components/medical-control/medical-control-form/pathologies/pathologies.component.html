@@ -1,0 +1,86 @@
+<form id="form" [formGroup]="form" class="p-0 m-0">
+	<div formArrayName="formPathologies">
+		<ul class="row" *ngFor="let item of formPathologies.controls; let idx = index" [formGroupName]="idx">
+			<li class="col-md-10">
+				<mat-form-field>
+					<input
+						id="description"
+						formControlName="description"
+						#description
+						matInput
+						placeholder="{{ 'pathology' | translate }} "
+						aria-label="State"
+						autocomplete="off"
+						[matAutocomplete]="auto"
+						[readonly]="true"
+						title="{{ item.value.description }}"
+					/>
+				</mat-form-field>
+			</li>
+			<li class="col-md-2">
+				<div class="detail-action mt-1">
+					<span
+						class="vismaicon-24 icon-special-less add-icon-space"
+						id="removePathology"
+						(click)="removeItem(idx)"
+						*ngIf="item.value.isModify && !disabled"
+					></span>
+					<span
+						class="vismaicon-24 icon-special-plus add-icon-space"
+						id="addPathology"
+						*ngIf="viewAddBottom(idx, item.valid)"
+						(click)="addItem()"
+					></span>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<app-horizontal-feedback
+		*ngIf="viewFeedback"
+		type="addDiagnostic"
+		feedbackTitle="youDoNotHaveAnyRegistration"
+		description="youCanAddPathologiesFromHere"
+		buttonAction="add"
+		(onButtonAction)="addNewPathology()"
+		[hiddenButton]="disabled"
+		idButton="addDiagnostic"
+	></app-horizontal-feedback>
+
+	<ul class="row">
+		<li class="col-md-10" *ngIf="!disabled && addPathology && !viewFeedback">
+			<mat-form-field>
+				<input
+					id="pathologySearch"
+					formControlName="pathologySearch"
+					#pathologySearch
+					matInput
+					placeholder="{{ 'pathologySearch' | translate }}"
+					aria-label="State"
+					autocomplete="off"
+					[matAutocomplete]="auto"
+				/>
+				<mat-autocomplete #auto="matAutocomplete" class="mt-20">
+					<mat-option *ngIf="isLoading" class="is-loading">
+						<span class="loading-text">{{ "loading..." | translate }}</span>
+					</mat-option>
+					<ng-container *ngIf="!isLoading">
+						<mat-option (click)="setPathology(pathology)" *ngFor="let pathology of listPathologies" [value]="pathology.description">
+							<span class="autoCompleteText">{{ pathology.description }}</span>
+						</mat-option>
+					</ng-container>
+				</mat-autocomplete>
+				<mat-icon matSuffix><span class="vismaicon-16 icon-system-search ml-20"></span></mat-icon>
+			</mat-form-field>
+		</li>
+		<li class="col-md-2">
+			<div class="detail-action mt-1">
+				<span
+					class="vismaicon-24 icon-special-less add-icon-space"
+					id="removePathology"
+					(click)="removeItem()"
+					*ngIf="!disabled && addPathology && !viewFeedback && pathologySelected"
+				></span>
+			</div>
+		</li>
+	</ul>
+</form>

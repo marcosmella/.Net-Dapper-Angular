@@ -1,0 +1,202 @@
+<form id="formMedicalControlFilter" [formGroup]="formMedicalControlFilter" novalidate>
+	<fieldset class="filtre-form">
+		<mat-expansion-panel [expanded]="true">
+			<mat-expansion-panel-header>
+				<mat-panel-title id="employeeDataPanel">
+					<p class="label mt-20 ml-15">{{ "employeeData" | translate }}</p>
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<mat-form-field class="col-md-12 pt-15">
+				<input
+					id="lastName"
+					#lastName
+					formControlName="lastName"
+					matInput
+					placeholder="{{ 'lastName' | translate }}"
+					autocomplete="no"
+					(keyup.enter)="clickApplyFilter()"
+				/>
+			</mat-form-field>
+			<mat-form-field class="col-md-12 pt-15">
+				<input
+					id="name"
+					#name
+					formControlName="name"
+					matInput
+					placeholder="{{ 'name' | translate }}"
+					autocomplete="no"
+					(keyup.enter)="clickApplyFilter()"
+				/>
+			</mat-form-field>
+
+			<mat-form-field class="col-md-12 pt-15 pb-15">
+				<input
+					type="number"
+					id="fileNumber"
+					#fileNumber
+					formControlName="fileNumber"
+					matInput
+					placeholder="{{ 'fileNumber' | translate }}"
+					field-validation
+					autocomplete="no"
+					onkeydown="return event.keyCode !== 69"
+					(keyup.enter)="clickApplyFilter()"
+				/>
+			</mat-form-field>
+			<span class="errorValidationForm" id="fileNumberValidation"></span>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title id="medicalControlPanel">
+					<p class="label mt-20 ml-15">{{ "medicalControl" | translate }}</p>
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<ng-select
+				class="pt-15"
+				id="idControlType"
+				[items]="medicalControlTypes"
+				bindLabel="description"
+				placeholder="{{ 'controlType' | translate }}"
+				formControlName="idControlType"
+				bindValue="id"
+				appendTo="body"
+				(change)="changeControlType($event?.id)"
+				(keyup.enter)="clickApplyFilter()"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.description }}">{{ item.description }}</div>
+				</ng-template>
+			</ng-select>
+
+			<ng-select
+				class="pt-15 pb-15"
+				id="idMedicalControlAction"
+				[items]="medicalControlActions"
+				bindLabel="description"
+				placeholder="{{ 'actionType' | translate }}"
+				formControlName="idMedicalControlAction"
+				bindValue="id"
+				appendTo="body"
+				(change)="changeAction($event)"
+				(keyup.enter)="clickApplyFilter()"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.description }}">{{ item.description }}</div>
+				</ng-template>
+			</ng-select>
+
+			<ng-select
+				id="idAbsenceTypes"
+				[items]="absenceTypes"
+				placeholder="{{ 'absenceType' | translate }}"
+				bindValue="id"
+				bindLabel="name"
+				formControlName="idAbsenceType"
+				appendTo="body"
+				(keyup.enter)="clickApplyFilter()"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.name }}">{{ item.name }}</div>
+				</ng-template>
+			</ng-select>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel (click)="getStructureType()">
+			<mat-expansion-panel-header>
+				<mat-panel-title id="organizationPanel">
+					<p class="label mt-20 ml-15">{{ "organization" | translate }}</p>
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<ng-select
+				class="pt-15"
+				bindLabel="description"
+				placeholder="{{ 'structureType' | translate }}"
+				bindValue="id"
+				formControlName="idStructureType"
+				id="idStructureType"
+				[items]="structureTypes"
+				appendTo="body"
+				(change)="changeStructureType($event)"
+				(keyup.enter)="clickApplyFilter()"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.description }}">{{ item.description }}</div>
+				</ng-template>
+			</ng-select>
+			<ng-select
+				class="pt-15"
+				placeholder="{{ 'byAttribute' | translate }}"
+				id="idStructure"
+				bindLabel="description"
+				[items]="structures"
+				formControlName="idStructure"
+				(change)="changeStructure($event)"
+				appendTo="body"
+				(keyup.enter)="clickApplyFilter()"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item.description }}">{{ item.description }}</div>
+				</ng-template>
+			</ng-select>
+		</mat-expansion-panel>
+
+		<div formGroupName="medicalControlRange">
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title id="medicalControlRangePanel">
+						<p class="label ml-15">{{ "dateRange" | translate }}</p>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<mat-form-field class="col-md-12 pt-15">
+					<input
+						id="start"
+						#absenceDateFrom
+						formControlName="start"
+						matInput
+						field-validation
+						class="p-0 m-0"
+						[matDatepicker]="dateFromPicker"
+						placeholder="{{ 'dateFrom' | translate }}"
+						(keyup.enter)="clickApplyFilter()"
+					/>
+					<mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+					<mat-datepicker #dateFromPicker></mat-datepicker>
+				</mat-form-field>
+				<span class="errorValidationForm" id="startValidation"></span>
+				<mat-form-field class="col-md-12 pt-15">
+					<input
+						id="end"
+						#absenceDateTo
+						formControlName="end"
+						matInput
+						field-validation
+						[matDatepicker]="dateToPicker"
+						placeholder="{{ 'dateTo' | translate }}"
+						(keyup.enter)="clickApplyFilter()"
+					/>
+					<mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+					<mat-datepicker #dateToPicker></mat-datepicker>
+				</mat-form-field>
+				<span class="errorValidationForm" id="endValidation"></span>
+			</mat-expansion-panel>
+		</div>
+
+		<div class="bottom-sticky single-button">
+			<button
+				id="buttonFilter"
+				type="button"
+				(click)="clickApplyFilter()"
+				class="btn-small"
+				[ngClass]="{
+					'btn-secondary-fill': formMedicalControlFilter.dirty && formMedicalControlFilter.valid,
+					'btn-disabled-fill': filterDisabled()
+				}"
+				[disabled]="filterDisabled()"
+			>
+				{{ "apply" | translate }}
+			</button>
+		</div>
+	</fieldset>
+</form>

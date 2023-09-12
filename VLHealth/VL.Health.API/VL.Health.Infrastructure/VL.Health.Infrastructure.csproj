@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>77a11e9f-e85d-49f1-a17c-5e6ed657301b</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VL.Libraries.Client" Version="1.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VL.Health.Domain\VL.Health.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

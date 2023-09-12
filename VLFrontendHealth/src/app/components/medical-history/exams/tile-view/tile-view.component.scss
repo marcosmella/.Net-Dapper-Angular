@@ -1,0 +1,75 @@
+.file-format img {
+	width: 60px;
+	height: 60px;
+	border: none;
+}
+
+.file-wrapper {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 5px;
+	margin-top: 20px;
+}
+.file-container {
+	padding: 10px;
+	background-color: #fff;
+	width: 200px;
+	height: auto;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	border: 1px solid #dddddd;
+	-webkit-box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+	-moz-box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+	box-shadow: 0px 0px 8px 0px rgb(210, 210, 210);
+}
+.file-container:last-child {
+	margin-right: 0;
+}
+.file-type {
+	padding: 10px;
+	margin: 0 auto;
+	width: 175px;
+	height: 120px;
+}
+.file-menu {
+	text-align: right;
+}
+
+.wrapper-file-menu {
+	border-radius: 50px;
+	padding: 12px;
+	margin: -5px 120px;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	background-color: #f8f8f870;
+}
+
+.file-format {
+	text-align: center;
+}
+
+.file-title {
+	font-family: "OpenSansFallback", sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: 600;
+	font-style: normal;
+	color: #282828;
+	text-align: left;
+	margin-top: 10px;
+}
+.file-description {
+	font-family: "OpenSansFallback", sans-serif;
+	font-size: 10px;
+	line-height: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #919191;
+	text-align: left;
+	margin-top: 10px;
+}

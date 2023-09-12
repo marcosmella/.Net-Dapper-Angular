@@ -1,0 +1,98 @@
+<div id="content-tab-employee">
+	<form [formGroup]="form" form-validation>
+		<loading-spinner #spinnerVaccines name="spinnerVaccines"></loading-spinner>
+		<fieldset id="login-form">
+			<div class="row mb-15">
+				<div class="col-md-6 pt-5">
+					<span aria-hidden="false" class="icon-description-blue-healthy-document vismaicon-24 mt-10 mr-10"></span>
+					<span class="title-tab">{{ "appliedVaccines" | translate }}</span>
+				</div>
+				<div class="col-md-6 align-right">
+					<app-button
+						id="submit"
+						(click)="clickSave()"
+						[type]="'submit'"
+						*ngIf="enableEditing"
+						[class]="'btn-small btn-secondary-fill'"
+						[hidden]="form.pristine || !form.valid"
+					>
+						{{ "save" | translate }}
+					</app-button>
+				</div>
+			</div>
+			<div class="row pb-20 pt-15" *ngIf="formVaccines.controls.length == 0">
+				<div class="col-md-12">
+					<app-horizontal-feedback
+						type="addVaccine"
+						title="youDoNotHaveAnyRegistration"
+						description="youCanAddVaccineThatYouNeed"
+						(onButtonAction)="addItem()"
+						buttonAction="add"
+						[hiddenButton]="!enableEditing"
+					></app-horizontal-feedback>
+				</div>
+			</div>
+
+			<div formArrayName="formVaccines">
+				<div class="row pb-20 pt-5" *ngFor="let item of formVaccines.controls; let idx = index" [formGroupName]="idx">
+					<span class="col-md-12 invalid mb-25" *ngFor="let error of item.value.messageErrors">{{ error | translate }}</span>
+
+					<div class="col-md-6">
+						<ng-select
+							id="vaccine{{ idx }}"
+							[items]="vaccines"
+							formControlName="idVaccine"
+							bindLabel="description"
+							placeholder="{{ 'vaccine' | translate }} *"
+							bindValue="id"
+							appendTo="body"
+							[clearable]="false"
+							field-validation
+							(change)="updateItem(idx)"
+							[readonly]="enableEditing ? false : true"
+							><ng-template ng-option-tmp let-item="item">
+								<div title="{{ item.description }}">{{ item.description }}</div>
+							</ng-template>
+						</ng-select>
+						<span class="errorValidationForm" id="vaccine{{ idx }}Validation"></span>
+					</div>
+
+					<div class="col-md-3">
+						<mat-form-field>
+							<input
+								id="applicationDate{{ idx }}"
+								matInput
+								field-validation
+								[matDatepicker]="applicationDatePicker"
+								placeholder="{{ 'applicationDate' | translate }}"
+								formControlName="applicationDate"
+								[readonly]="enableEditing ? false : true"
+								(dateChange)="changeApplicationDate(idx)"
+							/>
+							<mat-datepicker-toggle matSuffix [for]="applicationDatePicker"></mat-datepicker-toggle>
+							<mat-datepicker #applicationDatePicker></mat-datepicker>
+						</mat-form-field>
+						<span class="errorValidationForm" id="applicationDate{{ idx }}Validation"></span>
+					</div>
+
+					<div class="col-md-3">
+						<div class="detail-action mt-1">
+							<span
+								class="vismaicon-24 icon-special-less add-icon-space"
+								id="removeIntegration"
+								(click)="removeItem(idx)"
+								*ngIf="enableEditing && formVaccines.value.length >= 1"
+							></span>
+							<span
+								class="vismaicon-24 icon-special-plus add-icon-space"
+								id="addIntegration"
+								*ngIf="enableEditing && idx === formVaccines.value.length - 1 && item.valid"
+								(click)="addItem()"
+							></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

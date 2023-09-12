@@ -1,0 +1,36 @@
+<div id="structure">
+	<div class="row main-content">
+		<a (click)="goBack()">
+			<span id="backArrow" class="vismaicon icon-special-return return"></span>
+		</a>
+		<div class="structure-container" id="wizard-structure-generic">
+			<h1 class="align-center">{{ "whatKindOfMedicalControlDoYouNeedToCharge" | translate }}</h1>
+			<div class="card-space justify-content-md-center">
+				<div class="card-box">
+					<img class="col" src="{{ '/health/assets/svg/message/action/icon-fb-health-control.svg' | assetUrl }}" height="100px" />
+					<h2 class="pt-20">{{ "newMedicControl" | translate }}</h2>
+					<p>
+						{{ "atHomeInConsultingRoomOrVirtualAttetion" | translate }}
+					</p>
+					<div class="align-center d-flex">
+						<a id="newMedicControl" (click)="create()" class="btn-small btn-primary-fill pt-8">
+							{{ "charge" | translate }}
+						</a>
+					</div>
+				</div>
+				<div class="card-box">
+					<img class="col" src="{{ '/health/assets/svg/message/action/icon-fb-health-absence.svg' | assetUrl }}" height="100px" />
+					<h2 class="pt-20">{{ "fromAbsenceRequested" | translate }}</h2>
+					<p>
+						{{ "associatesAMedicalControlWithAnAbsenceAlreadyCreated" | translate }}
+					</p>
+					<div class="align-center d-flex">
+						<a id="newMedicControl" (click)="createFromAbsenceRequested()" class="btn-small btn-primary-fill pt-8">
+							{{ "charge" | translate }}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

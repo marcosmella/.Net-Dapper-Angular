@@ -1,0 +1,12 @@
+<div id="grid">
+	<div class="d-flex justify-content-between mb-20">
+		<div class="align-left">
+			<h3>{{ "assignedWorkItems" | translate }}</h3>
+		</div>
+		<div class="align-right pt-25">
+			<span class="link link-pointer" (click)="goToElementss()"> {{ "goToElements" | translate }} </span>
+		</div>
+	</div>
+	<alert id="elementsError"></alert>
+	<app-work-element-list [idEmployee]="idEmployee"></app-work-element-list>
+</div>

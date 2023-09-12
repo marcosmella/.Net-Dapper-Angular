@@ -1,0 +1,47 @@
+<section id="structure" class="bg-top">
+	<!-- Form Card -->
+	<div class="structure-container-form mt-25">
+		<mat-card>
+			<form class="container" [formGroup]="formUploadFile" form-validation>
+				<h1>{{ "addFile" | translate }}</h1>
+				<fieldset id="login-form">
+					<div class="row">
+						<div class="col-md-12">
+							<app-drag-drop-file
+								[acceptFormats]="acceptFormats"
+								[entityId]="entityId"
+								[fileTypeId]="fileTypeId"
+								[fileType]="fileType"
+								[entityTypeId]="entityTypeId"
+								[active]="active"
+								(fileName)="setFilename($event)"
+								#dragAndDropFile
+								[ellipsisActions]="ellipsisActions"
+								[multiple]="false"
+							></app-drag-drop-file>
+						</div>
+					</div>
+				</fieldset>
+				<div class="mt-30">
+					<div class="row justify-content-between">
+						<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+						<span class="d-flex">
+							<app-button id="cancel" [type]="'button'" [class]="'btn-regular btn-link pt-8'" (click)="cancel()">
+								{{ "cancel" | translate }}
+							</app-button>
+							<app-button
+								id="save"
+								[type]="'submit'"
+								(click)="save()"
+								[class]="'btn-regular btn-secondary-fill mr-30 ml-20'"
+								[disabled]="!formUploadFile.valid"
+							>
+								{{ "save" | translate }}
+							</app-button>
+						</span>
+					</div>
+				</div>
+			</form>
+		</mat-card>
+	</div>
+</section>

@@ -1,0 +1,77 @@
+<div id="grid">
+	<div class="row">
+		<div class="col">
+			<div class="row main-content">
+				<div class="col">
+					<div class="row">
+						<div class="col title-section">
+							<app-breadcrumb></app-breadcrumb>
+							<h1>{{ "medicalControls" | translate }}</h1>
+						</div>
+						<div class="table-actions d-flex mr-15">
+							<a class="btn-small btn-primary-outline pt-8 ml-15" id="import" (click)="import()">
+								<span class="vismaicon-16 icon-description-blue-upload btn-icon"></span>
+								{{ "import" | translate }}
+							</a>
+							<a
+								id="create"
+								routerLink="/healthApp/medical-control"
+								class="btn-small btn-primary-fill pt-8 ml-15"
+								*ngIf="'HealthMedicalControlCreate' | accessResource"
+							>
+								<span class="vismaicon-16 icon-action-add-wh pr-5 btn-icon"></span>{{ "create" | translate }}
+							</a>
+						</div>
+					</div>
+					<div class="row mb-30">
+						<div class="col">
+							<alert id="medicalControlError"></alert>
+							<mat-card class="table-content">
+								<div class="chip-wrapper">
+									<span class="caption">{{ "filterBy" | translate }}</span>
+									<div class="chip-content">
+										<mat-chip-list>
+											<mat-chip
+												[id]="'chip_' + filter.name"
+												class="btn-chip mat-chip-border"
+												*ngFor="let filter of filtered"
+												(click)="removeChip(filter.name)"
+												(removed)="removeChip(filter.name)"
+											>
+												{{ filter.text }}
+												<span class="vismaicon-10 icon-special-close-chip" matChipRemove></span>
+											</mat-chip>
+										</mat-chip-list>
+									</div>
+
+									<div class="chip-action" id="chipResetFilter">
+										<span class="mr-15 mt-less-5 chip-result"
+											>{{ medicalControlList.quantityMedicalControls }} - {{ "results" | translate }}</span
+										>
+										<a class="link" (click)="clearFilter()" id="resetFilter">{{ "resetFilter" | translate }}</a>
+										<button class="btn-small wrapper-button-circle" (click)="filter = !filter" id="filter">
+											<span class="vismaicon-16 icon-system-filtre"></span>
+										</button>
+									</div>
+								</div>
+								<app-medical-control-list #medicalControlList [itemsPerPage]="25" [editing]="true"> </app-medical-control-list>
+							</mat-card>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Columna de Filtro -->
+		<div class="filter" *ngIf="filter">
+			<!-- Header Filtro -->
+			<div class="header-filtre">
+				<h2>{{ "filter" | translate }}</h2>
+				<span class="vismaicon-20 icon-action-close float-right mt-less-25 pr-10" (click)="filter = !filter"></span>
+			</div>
+			<!-- Filtros -->
+
+			<app-medical-control-filter #medicalControlFilter (onApplyFilter)="onApplyFilter()"></app-medical-control-filter>
+		</div>
+	</div>
+</div>

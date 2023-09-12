@@ -1,0 +1,8 @@
+<loading-spinner #spinnerImage name="spinnerImage" id="spinnerImage"></loading-spinner>
+<div id="avatar" class="img-preview">
+	<img [source]="sourceFile" appFileManagement [class]="class" [ngStyle]="styleInner" [id]="id" />
+	<label *ngIf="idEntity && !hideButton" for="file{{ id }}" class="avatar-edit">
+		<span class="vismaicon-16 icon-system-edit" id="iconEdit"></span>
+		<input type="file" name="file{{ id }}" id="file{{ id }}" class="none" (change)="addFile($event.target.files)" accept="image/*" />
+	</label>
+</div>

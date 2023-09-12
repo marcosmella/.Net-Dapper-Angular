@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>ad80ef28-031c-4da5-bd76-dc326063ca48</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VL.Health.Domain\VL.Health.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.11" />
+  </ItemGroup>
+
+</Project>

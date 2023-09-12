@@ -1,0 +1,27 @@
+<div #alert class="d-flex justify-content-between alert-content">
+	<div
+		*ngIf="message"
+		[ngClass]="{
+			alert: message,
+			'alert-warning': message.type === 'warning',
+			'alert-danger': message.type === 'error',
+			'alert-info': message.type === 'info'
+		}"
+	>
+		<span
+			[ngClass]="{
+				'icon vismaicon': message,
+				'vismaicon-30 icon-feedback-warning': message.type === 'error' || 'warning',
+				'vismaicon-30 icon-feedback-info': message.type === 'info'
+			}"
+		></span>
+		<span class="alert-message">
+			<ul>
+				<li [id]="item" *ngFor="let item of message.list" [ngClass]="{ 'li-alert': message.list.length == 1 }">
+					{{ item | translate }}
+				</li>
+			</ul>
+		</span>
+		<span class="icon-close icon-action-close vismaicon-16" (click)="message = null"></span>
+	</div>
+</div>

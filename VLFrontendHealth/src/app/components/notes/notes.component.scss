@@ -1,0 +1,48 @@
+.note-wrapper {
+	padding: 15px;
+	display: block;
+	flex-direction: column;
+	flex-wrap: wrap;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 250px;
+	box-sizing: border-box;
+}
+.note-container {
+	background-color: #f4f4f4;
+	display: flex;
+	border-radius: 10px;
+	height: 50px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+.note-type-color {
+	width: 10px;
+	height: 50px;
+	background-color: #669900;
+	border-radius: 10px 0px 0px 10px;
+}
+.note-motive {
+	color: #282828;
+	padding: 15px 10px 0px 10px;
+	text-align: left;
+	font-size: 13px;
+	line-height: 18px;
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.note-menu {
+	position: relative;
+	right: 20px;
+	top: 15px;
+	padding-right: 0px;
+}
+.note-confidential {
+	width: 26px;
+}

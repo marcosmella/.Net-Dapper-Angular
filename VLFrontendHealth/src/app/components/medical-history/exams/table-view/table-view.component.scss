@@ -1,0 +1,18 @@
+.file-format {
+	width: 60px;
+	border: none;
+	cursor: none;
+}
+
+.file-format img {
+	width: 60px;
+	height: 60px;
+	border: none;
+	cursor: none;
+}
+pdf-viewer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	filter: drop-shadow(5px 5px 5px #222222);
+}

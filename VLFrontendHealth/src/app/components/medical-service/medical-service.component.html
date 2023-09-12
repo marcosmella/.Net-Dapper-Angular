@@ -1,0 +1,65 @@
+<section id="structure" class="bg-top">
+	<!-- Icon Return -->
+	<a routerLink="/healthApp/medical-services">
+		<span id="backArrow" class="vismaicon icon-special-return return"></span>
+	</a>
+
+	<!-- Form Card -->
+	<div class="structure-container-form">
+		<alert id="medicalServiceError"></alert>
+		<mat-card>
+			<loading-spinner #spinner name="spinner"></loading-spinner>
+			<form [formGroup]="formMedicalService" (ngSubmit)="submit()" class="container" form-validation>
+				<h1>{{ "medicalService" | translate }}</h1>
+				<fieldset id="login-form">
+					<ul class="row">
+						<li class="col-md-6">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'company' | translate }} *"
+									autocomplete="no"
+									formControlName="company"
+									id="company"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="companyValidation"></span>
+						</li>
+						<li class="col-md-6">
+							<mat-form-field>
+								<input
+									matInput
+									placeholder="{{ 'phoneNumber' | translate }} *"
+									autocomplete="no"
+									formControlName="phone"
+									id="phone"
+									field-validation
+								/>
+							</mat-form-field>
+							<span class="errorValidationForm" id="phoneValidation"></span>
+						</li>
+					</ul>
+				</fieldset>
+				<div class="mt-30">
+					<div class="row justify-content-between">
+						<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+						<span class="d-flex">
+							<a id="cancel" routerLink="/healthApp/medical-services" class="btn-regular btn-link pt-8">
+								{{ "cancel" | translate }}
+							</a>
+							<app-button
+								[disabled]="!formMedicalService.valid || !formMedicalService.dirty"
+								id="save"
+								[type]="'submit'"
+								[class]="'btn-regular btn-secondary-fill mr-30 ml-20'"
+							>
+								{{ "save" | translate }}
+							</app-button>
+						</span>
+					</div>
+				</div>
+			</form>
+		</mat-card>
+	</div>
+</section>

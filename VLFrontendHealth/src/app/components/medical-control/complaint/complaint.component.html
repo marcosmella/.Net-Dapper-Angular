@@ -1,0 +1,52 @@
+<a (click)="cancel()"> <span id="backArrow" class="vismaicon icon-special-return return pl-30 pt-20"></span> </a>
+<loading-spinner #complaintSpinner name="complaintSpinner"></loading-spinner>
+<div class="modal-container-form mt-30">
+	<div class="mb-30">
+		<alert id="complaintError"></alert>
+	</div>
+	<form class="container" id="formComplaint" [formGroup]="formComplaint" form-validation>
+		<mat-card class="justify-content-between">
+			<h1>{{ "uploadComplaint" | translate }}</h1>
+
+			<div class="mt-30">
+				<app-drag-drop-file
+					[acceptFormats]="acceptFormats"
+					[entityId]="idEmployee"
+					[fileTypeId]="fileTypeId"
+					[fileType]="fileType"
+					[entityTypeId]="entityTypeIdEmployee"
+					[active]="active"
+					(fileName)="setFilename($event)"
+					#dragAndDropFile
+					[ellipsisActions]="ellipsisActions"
+					(onError)="errorImage($event)"
+					required
+					[id]="'dragDropComplaint'"
+					(idFile)="setIdCertificate($event)"
+					[updateFileData]="updateData"
+					[multiple]="false"
+				></app-drag-drop-file>
+			</div>
+
+			<mat-card-actions class="mt-30">
+				<div class="row justify-content-between">
+					<span class="caption-italic input-required">* {{ "requiredFields" | translate }} </span>
+					<span>
+						<app-button id="cancel" [type]="'button'" [class]="'btn-regular btn-link'" (click)="cancel()">
+							{{ "cancel" | translate }}
+						</app-button>
+						<app-button
+							id="save"
+							[type]="'submit'"
+							[class]="'btn-regular btn-secondary-fill'"
+							[disabled]="!formComplaint.valid || dragAndDropFile.errorFile"
+							(click)="save()"
+						>
+							{{ "save" | translate }}
+						</app-button>
+					</span>
+				</div>
+			</mat-card-actions>
+		</mat-card>
+	</form>
+</div>

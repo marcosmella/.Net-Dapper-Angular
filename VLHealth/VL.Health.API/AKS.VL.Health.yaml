@@ -1,0 +1,160 @@
+##################################################################################################
+# health service port 8099
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: health
+  labels:
+    app: health
+    service: health
+spec:
+  ports:
+  - port: 80
+    name: http
+    targetPort: 80
+  selector:
+    app: health
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vl-health
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-v1
+  labels:
+    app: health
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: health
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: health
+        version: v1
+    spec:
+      serviceAccountName: vl-health
+      hostAliases:
+      - ip: "10.7.11.95"
+        hostnames:
+        - "sd-p-rhpsql03"
+      - ip: "10.7.11.96"
+        hostnames:
+        - "sd-p-rhpsql02"
+      - ip: "10.7.11.97"
+        hostnames:
+        - "sd-p-rhpsql01"
+      - ip: "193.67.12.175"
+        hostnames:
+        - "sa-sql61"
+      - ip: "193.67.13.225"
+        hostnames:
+        - "sa-sql63"
+      - ip: "193.67.13.224"
+        hostnames:
+        - "sa-sql64"
+      - ip: "193.67.13.223"
+        hostnames:
+        - "sa-sql65"
+      - ip: "193.67.13.222"
+        hostnames:
+        - "sa-sql68"
+      - ip: "193.67.13.220"
+        hostnames:
+        - "sa-sql70"
+      containers:
+      - name: health
+        image: #{ContainerRegistry}#.azurecr.io/vlhealthservice:#{Build.BuildId}#
+        resources:
+          limits:
+            memory: "400Mi"
+            cpu: "100m"
+          requests:
+            memory: "200Mi"
+            cpu: "10m"
+        env:
+        - name: ApplicationInsights_InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: Health_ApplicationInsights_InstrumentationKey
+        - name: SQLCONNSTR_VLMetaHomeDB
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: SQLCONNSTR_VLMetaHomeDB
+        - name: SQLCONNSTR_VLDevDB
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: SQLCONNSTR_VLDevDB
+        - name: MachineKey_DecryptionKey
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: MachineKey_DecryptionKey
+        - name: MachineKey_ValidationKey
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: MachineKey_ValidationKey
+        - name: UserIdDataAccess
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: UserIdDataAccess
+        - name: PasswordDataAccess
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: PasswordDataAccess
+        - name: GlobalConfigurationBackendUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: GlobalConfigurationBackendUrl
+        - name: AuditBackendUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: AuditBackendUrl 
+        - name: SecurityBackEndUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: SecurityBackEndUrl
+        - name: PersonBackEndUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: PersonBackEndUrl   
+        - name: AbsenceBackendUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: AbsenceBackendUrl
+        - name: WebApiBusinessServiceUrl
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: WebApiBusinessServiceUrl                 
+        - name: BuildId
+          value: "#{Build.BuildId}#"
+        - name: SQLCONNSTR_VLRedisDB
+          valueFrom:
+            secretKeyRef:
+                name: envsecrets
+                key: SQLCONNSTR_VLRedisDB
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: vldockerregistry
+---

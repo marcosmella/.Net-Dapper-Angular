@@ -1,0 +1,22 @@
+<loading-spinner #breakSpinner name="breakSpinner"></loading-spinner>
+<form [formGroup]="formBreakMedicalControl" form-validation>
+	<ul class="row">
+		<li class="col-md-3">
+			<ng-select
+				id="breakTime"
+				formControlName="breakTime"
+				field-validation
+				[items]="breakTimes"
+				placeholder="{{ 'breakTime' | translate }}*"
+				appendTo="body"
+				(change)="setMedicalControlBreak()"
+				[readonly]="editing"
+			>
+				<ng-template ng-option-tmp let-item="item">
+					<div title="{{ item }}">{{ item }}</div>
+				</ng-template>
+			</ng-select>
+			<span class="errorValidationForm" id="breakTimeValidation"></span>
+		</li>
+	</ul>
+</form>
